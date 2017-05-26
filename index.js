@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-helix'
+  name: 'ember-primer'
 };

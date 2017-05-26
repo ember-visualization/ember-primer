@@ -1,0 +1,6 @@
+{
+  "name": "ember-primer",
+  "dependencies": {
+    "animation-frame": "~0.2.4"
+  }
+}

@@ -1,0 +1,9 @@
+{{#primer-plot as |h|}}
+  {{#h.group}}
+    {{#h.transition values=timeSeriesData as |values|}}
+      {{primer-scatter values=values}}
+
+      {{!-- {{h.line values=values}} --}}
+    {{/h.transition}}
+  {{/h.group}}
+{{/primer-plot}}
