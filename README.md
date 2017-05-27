@@ -14,6 +14,14 @@ to be done at a higher level and passed down to the presentation layer,
 3. Interaction and animation layers should be composed separately from the visual
 primitives.
 
+#### It it Production Ready™?
+
+No, not yet.
+
+#### Is it awesome?
+
+Yes.
+
 # Installation
 
 Installation is simple, run:
