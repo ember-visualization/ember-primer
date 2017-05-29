@@ -1,18 +1,21 @@
 import Helper from 'ember-helper';
-import { extent } from 'd3-array';
+import { extent, ascending } from 'd3-array';
 
-export function helper(array, hash = {}) {
-  if (hash.key) {
+export function helper([array], hash = {}) {
+  let finalArray = [];
+
+  if (hash && hash.key) {
     let match = hash.key.match(/\$(\d+)/);
     if (match) {
       let [, index] = match;
-      return extent(array, (d) => d[index]);
+      finalArray = array.map((d) => d[index]);
     } else {
-      return extent(array, (d) => d[hash.key]);
+      finalArray = array.map((d) => d[hash.key]);
     }
   } else {
-    return extent(array);
+    finalArray = array;
   }
+  return extent(finalArray.sort(ascending));
 }
 
 export default Helper.helper(helper);

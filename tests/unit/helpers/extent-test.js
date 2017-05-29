@@ -7,8 +7,8 @@ module('Unit | Helper | extent');
 test('returns extent using key from object', function(assert) {
   let data = [
     { x: 1, y: 1 },
-    { x: 2, y: 2 },
-    { x: 3, y: 3 }
+    { x: 3, y: 3 },
+    { x: 2, y: 2 }
   ];
 
   let result = extent(data, { key: 'x' });
@@ -18,8 +18,8 @@ test('returns extent using key from object', function(assert) {
 test('returns extent using key from array index', function(assert) {
   let data = [
     [1, 1],
-    [2, 2],
-    [3, 3]
+    [3, 3],
+    [2, 2]
   ];
 
   let result = extent(data, { key: '$0' });
@@ -27,7 +27,7 @@ test('returns extent using key from array index', function(assert) {
 });
 
 test('returns extent of flat array', function(assert) {
-  let data = [1, 2, 3, 4, 5, 6, 7];
+  let data = [1, 2, 5, 6, 3, 4, 5, 6, 7];
 
   let result = extent(data);
   assert.deepEqual(result, [1, 7]);
