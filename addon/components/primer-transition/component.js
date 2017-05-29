@@ -1,11 +1,10 @@
 import Ember from 'ember';
 import layout from './template';
 import Timer from 'ember-primer/utils/timer';
-import { easeBounce } from 'd3-ease';
-import { interpolate } from 'd3-interpolate';
+import { easePolyOut } from 'd3-ease';
 import { victoryInterpolator } from 'ember-primer/utils/interpolation';
 
-const { run, compare } = Ember;
+const { run } = Ember;
 
 export default Ember.Component.extend({
   layout,
@@ -22,7 +21,7 @@ export default Ember.Component.extend({
 
   duration: 1550,
 
-  ease: easeBounce,
+  ease: easePolyOut,
 
   interpolator: null,
 
@@ -34,9 +33,6 @@ export default Ember.Component.extend({
     if (!this.timer) {
       this.timer = new Timer();
     }
-
-    console.log('didReceiveAttrs');
-
     let data = this.get('values').slice();
     let { previousData } = this;
 
@@ -126,10 +122,7 @@ export default Ember.Component.extend({
       let { loopID } = this;
       if (loopID) {
         timer.unsubscribe(loopID);
-        console.log('last frame, unsubscribe', loopID);
         this.loopID = null;
-      } else {
-        console.log('no loop id');
       }
 
       this.previousData = this.queue.shift();
