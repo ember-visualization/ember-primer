@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import Component from 'ember-component';
+import ResizeableContainer from 'ember-primer/mixins/resizeable-container';
 import layout from './template';
 
-export default Ember.Component.extend({
+export default Component.extend(ResizeableContainer, {
   layout,
 
   tagName: 'svg',
@@ -10,6 +11,5 @@ export default Ember.Component.extend({
 
   attributeBindings: ['width', 'height'],
 
-  width: 960,
-  height: 500
+  desc: null
 });

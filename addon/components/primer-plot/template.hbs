@@ -1,5 +1,13 @@
+{{#if desc}}<desc>{{desc}}</desc>{{/if}}
+
 {{yield (hash
-  group=(component "primer-group" plot=this)
-  line=(component "primer-line" plot=this)
+  width=width
+  height=height
+
+  group=(component "primer-group")
+  container=(component "primer-container" width=width height=height)
+  cursor=(component "primer-cursor")
+  line=(component "primer-line" tagName="g")
   transition=(component "primer-transition")
+  axis=(component "primer-axis")
 )}}
