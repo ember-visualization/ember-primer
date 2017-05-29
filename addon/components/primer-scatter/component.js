@@ -32,18 +32,13 @@ export default Ember.Component.extend({
 
   newValues: [],
 
+  xScale: null,
+
+  yScale: null,
+
   didReceiveAttrs() {
     let values = this.get('values').filter((d) => d);
-    let xData = values.map((d) => d.x);
-
-    let xScale = scaleLinear()
-        .domain(extent(xData))
-        .rangeRound([0, 960]);
-
-    let yData = values.map((d) => d.y);
-    let yScale = scaleLinear()
-        .domain(extent(yData))
-        .rangeRound([500, 0]);
+    let { xScale, yScale } = this.getProperties('xScale', 'yScale');
 
     let newValues = values.slice().map((d) => {
       let sym = symbol();
@@ -53,7 +48,6 @@ export default Ember.Component.extend({
       return Object.assign({}, d, { symbol: sym(), x: xScale(d.x), y: yScale(d.y) });
     });
 
-    // console.log(newValues);
     this.set('newValues', newValues);
   }
 });
