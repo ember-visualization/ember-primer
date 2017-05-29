@@ -1,5 +1,5 @@
-{{#each newValues key='@index' as |value|}}
-  <g class="Symbol" transform="translate({{value.x}},{{value.y}})">
-    <path fill={{value.fill}} d={{value.symbol}}></path>
+{{#each newValues key='@index' as |symbol|}}
+  <g class="Symbol" transform="translate({{symbol.x}},{{symbol.y}})">
+    <path fill={{symbol.fill}} d={{symbol.symbol}}></path>
   </g>
 {{/each}}
