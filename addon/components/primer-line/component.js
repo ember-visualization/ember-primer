@@ -1,62 +1,100 @@
 import Component from 'ember-component';
-import Ember from 'ember';
 import layout from './template';
 import computed from 'ember-computed';
+import { line } from 'd3-shape';
+import curveLookup from 'ember-primer/utils/curve-lookup';
 
-const { run } = Ember;
-
-import { line, curveMonotoneX } from 'd3-shape';
-import { scaleLinear } from 'd3-scale';
-import { extent } from 'd3-array';
-
-export default Component.extend({
+const LineComponent = Component.extend({
   tagName: '',
   layout,
 
+  /**
+   * Normalized values to render
+   * @public
+   * @type {Array<Array[2]>}
+   */
   values: [],
 
-  timeSeriesData: [],
+  /**
+   * Line interpolation
+   * @public
+   * @type {String}
+   */
+  interpolation: 'monotone-x',
 
-  interpolation: 'curveMonotoneX',
+  /**
+   * Line stroke color
+   * @public
+   * @type {String}
+   */
+  stroke: '#4285f4',
 
-  scale: null,
+  /**
+   * Line stroke width
+   * @public
+   * @type {Number}
+   */
+  strokeWidth: 1,
 
-  xScale: computed('values.[]', {
+  /**
+   * Line cap endings
+   * @public
+   * @type {String}
+   */
+  strokeLineCap: 'rounded',
+
+  /**
+   * Fill color
+   * @public
+   * @type {String}
+   */
+  fill: 'none',
+
+  /**
+   * X Offset to position line from
+   * @public
+   * @type {Number}
+   */
+  x: 0,
+
+  /**
+   * Y Offset to position line from
+   * @public
+   * @type {Number}
+   */
+  y: 0,
+
+  xScale: null,
+
+  yScale: null,
+
+  transform: computed('x', 'y', {
     get() {
-      let values = this.get('values');
-      let xData = values.map((d) => d.x);
-      return scaleLinear()
-        .domain(extent(xData))
-        .rangeRound([0, 960]);
-    }
-  }),
-
-  yScale: computed('values.[]', {
-    get() {
-      let values = this.get('values');
-      let xData = values.map((d) => d.y);
-      return scaleLinear()
-        .domain(extent(xData))
-        .rangeRound([500, 0]);
+      let { x, y } = this.getProperties('x', 'y');
+      return `translate(${x},${y})`;
     }
   }),
 
   pathData: computed('values.[]', 'xScale', 'yScale', 'interpolation', {
     get() {
-      let { values, xScale, yScale, interpolation }
-        = this.getProperties('values', 'xScale', 'yScale', 'interpolation');
+      let { values, interpolation }
+        = this.getProperties('values', 'interpolation');
 
       let lineFn = line()
-        .x((d) => xScale(d.x))
-        .y((d) => yScale(d.y));
+        .x((d) => d[0])
+        .y((d) => d[1]);
 
       if (interpolation) {
-        lineFn.curve(curveMonotoneX);
+        lineFn.curve(curveLookup(interpolation));
       }
-
-      // console.log(values);
 
       return lineFn(values);
     }
   })
 });
+
+LineComponent.reopenClass({
+  positionalParams: ['values']
+});
+
+export default LineComponent;
