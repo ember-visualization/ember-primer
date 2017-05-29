@@ -2,10 +2,30 @@
 'use strict';
 
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const autoprefixer = require('autoprefixer');
+const systemUIFont = require('postcss-font-family-system-ui');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
-    // Add options here
+    postcssOptions: {
+      compile: {
+        enabled: false
+      },
+      plugins: [
+        systemUIFont
+      ],
+      filter: {
+        enabled: true,
+        plugins: [
+          {
+            module: autoprefixer,
+            options: {
+              browsers: ['last 5 version', 'ie 9']
+            }
+          }
+        ]
+      }
+    }
   });
 
   /*
