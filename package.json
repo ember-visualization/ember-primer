@@ -1,7 +1,7 @@
 {
   "name": "ember-primer",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember Primer is a collection of data visualization primitives.",
   "keywords": [
     "ember-addon"
   ],
