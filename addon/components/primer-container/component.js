@@ -22,7 +22,7 @@ const Container =  Component.extend({
   localizedXScale: computed('xScale', 'rect', {
     get() {
       let { xScale, rect } = this.getProperties('xScale', 'rect');
-      return xScale.copy().domain([0, rect.width]);
+      return xScale.copy().range([0, rect.width]);
     }
   }),
 
