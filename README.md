@@ -42,6 +42,15 @@ requirements of:
 
 *The following is an implementation goal, and the status of these APIs is in flux.*
 
+## Conventions
+
+In cartesion based graphs, all data points are expressed in the order of `x,y`. 
+This means that if you have an array of pairs, the values should be `[[x,y], [x,y], ...]`.
+
+Additionally, unless it is data, everything is named with axis prefix then name, for
+example, `xAxis`, `xScale`, `yScale`. If you see `x`, or `y`, it should be assumed to
+refer to an individual data point on that axis.
+
 ## 0. The `primer-plot` component
 
 This component inserts an SVG tag and exposes the dimensions of the chart for
@@ -71,7 +80,7 @@ element.
 
 ### `extent`
 
-The extent helper is used for finding the min and max values of an array of data
+The extent helper is used for finding the min and max values of an array of sorted data
 to be used as the input to the domain of a scale.
 
 There are 3 ways to use this addon:
