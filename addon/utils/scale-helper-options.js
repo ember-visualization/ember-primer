@@ -1,20 +1,23 @@
+import Ember from 'ember';
+const { isPresent } = Ember;
+
 export default function scaleHelperOptions(scale, domain, range, hash) {
   scale.domain(domain || []);
 
   // Add the range
-  if ('round' in hash && hash.round) {
+  if (hash && hash.round) {
     scale.rangeRound(range || []);
   } else {
     scale.range(range || []);
   }
 
   // Add Clamping
-  if ('clamp' in hash) {
-    scale.clamp(!!hash.clamp);
+  if (hash && isPresent(hash.clamp)) {
+    scale.clamp(hash.clamp);
   }
 
   // Add niceness
-  if ('nice' in hash) {
+  if (hash && isPresent(hash.nice)) {
     scale.nice(hash.nice);
   }
 
