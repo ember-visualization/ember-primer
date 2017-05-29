@@ -18,13 +18,14 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.0.0",
+    "ember-cli-babel": "^6.1.0",
     "ember-cli-htmlbars": "^2.0.1",
+    "ember-component-css": "^0.3.3",
     "ember-composable-helpers": "^2.0.1",
-    "ember-d3": "ivanvanderbyl/ember-d3#feature/use-rollup-and-simplify-loading",
-    "eslint-plugin-ember-suave": "^1.0.0"
+    "ember-d3": "ivanvanderbyl/ember-d3#feature/use-rollup-and-simplify-loading"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.1",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.14.0-beta.1",
@@ -32,7 +33,10 @@
     "ember-cli-eslint": "^3.0.0",
     "ember-cli-htmlbars-inline-precompile": "^0.4.0",
     "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-postcss": "^3.3.0",
     "ember-cli-qunit": "^4.0.0",
+    "ember-cli-raw-event-test-helpers": "^0.1.0",
+    "ember-cli-sass": "^6.1.3",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
@@ -40,9 +44,13 @@
     "ember-export-application-global": "^2.0.0",
     "ember-lifeline": "^1.0.4",
     "ember-load-initializers": "^1.0.0",
+    "ember-math-helpers": "^2.1.0",
     "ember-resolver": "^4.0.0",
+    "ember-run-raf": "runspired/ember-run-raf",
     "ember-source": "~2.14.0-beta.1",
-    "loader.js": "^4.2.3"
+    "eslint-plugin-ember-suave": "^1.0.0",
+    "loader.js": "^4.2.3",
+    "postcss-font-family-system-ui": "^2.0.1"
   },
   "engines": {
     "node": ">= 4"
