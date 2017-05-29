@@ -15,7 +15,12 @@ export function helper([array], hash = {}) {
   } else {
     finalArray = array;
   }
-  return extent(finalArray.sort(ascending));
+
+  if (hash && hash.inclusive === true) {
+    return finalArray;
+  } else {
+    return extent(finalArray.sort(ascending));
+  }
 }
 
 export default Helper.helper(helper);

@@ -1,13 +1,13 @@
 {{#primer-plot as |primer|}}
   {{#primer.container
-    (scale-linear (extent timeSeriesData key="$0"))
+    (scale/time (extent timeSeriesData key="$0"))
     (scale-linear (extent timeSeriesData key="$1"))
     margin="56"
     padding="0"
   as |primer rect|}}
     {{primer.line values=(scale timeSeriesData xScale=primer.xScale yScale=primer.yScale)}}
 
-    {{primer.axis "bottom" primer.xScale offsetY=8 ticks=20}}
-    {{primer.axis "left" primer.yScale offsetX=-8}}
+    {{primer.axis "bottom" primer.xScale offsetY}}
+    {{primer.axis "left" primer.yScale offsetX}}
   {{/primer.container}}
 {{/primer-plot}}

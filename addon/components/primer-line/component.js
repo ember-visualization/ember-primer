@@ -64,10 +64,6 @@ const LineComponent = Component.extend({
    */
   y: 0,
 
-  xScale: null,
-
-  yScale: null,
-
   transform: computed('x', 'y', {
     get() {
       let { x, y } = this.getProperties('x', 'y');
@@ -75,10 +71,9 @@ const LineComponent = Component.extend({
     }
   }),
 
-  pathData: computed('values.[]', 'xScale', 'yScale', 'interpolation', {
+  pathData: computed('values.[]', 'interpolation', {
     get() {
-      let { values, interpolation }
-        = this.getProperties('values', 'interpolation');
+      let { values, interpolation } = this.getProperties('values', 'interpolation');
 
       let lineFn = line()
         .x((d) => d[0])

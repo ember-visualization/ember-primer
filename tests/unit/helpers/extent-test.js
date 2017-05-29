@@ -11,7 +11,7 @@ test('returns extent using key from object', function(assert) {
     { x: 2, y: 2 }
   ];
 
-  let result = extent(data, { key: 'x' });
+  let result = extent([data], { key: 'x' });
   assert.deepEqual(result, [1, 3]);
 });
 
@@ -22,14 +22,21 @@ test('returns extent using key from array index', function(assert) {
     [2, 2]
   ];
 
-  let result = extent(data, { key: '$0' });
+  let result = extent([data], { key: '$0' });
   assert.deepEqual(result, [1, 3]);
 });
 
 test('returns extent of flat array', function(assert) {
   let data = [1, 2, 5, 6, 3, 4, 5, 6, 7];
 
-  let result = extent(data);
+  let result = extent([data]);
   assert.deepEqual(result, [1, 7]);
+});
+
+test('returns inclusive values for ordinal scales', function(assert) {
+  let data = ['Jan', 'Feb', 'Mar'];
+
+  let result = extent([data], { inclusive: true });
+  assert.deepEqual(result, ['Jan', 'Feb', 'Mar']);
 });
 
