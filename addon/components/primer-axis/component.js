@@ -27,6 +27,8 @@ const AxisComponent = Component.extend({
 
   tagName: 'g',
 
+  classNames: ['Primer-Axis'],
+
   ticks: 10,
 
   /**
