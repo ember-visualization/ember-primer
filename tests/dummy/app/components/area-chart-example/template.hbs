@@ -1,0 +1,35 @@
+{{#primer-plot as |primer|}}
+  <defs>
+    <filter id="drop-shadow-{{elementId}}" height="200%" width="200%">
+      <feComponentTransfer in="SourceAlpha" result="mask">
+        <feFuncA type="linear" slope="0.2" intercept="0"></feFuncA>
+      </feComponentTransfer>
+      <feGaussianBlur in="mask" stdDeviation="1" result="blur"></feGaussianBlur>
+      <feOffset in="blur" dx="0" dy="2" result="offset"></feOffset>
+      <feBlend in="SourceGraphic" in2="offset"></feBlend>
+    </filter>
+  </defs>
+
+  {{#primer.container
+    (scale/time (extent values key="$0"))
+    (scale-linear (extent values key="$1"))
+    margin="56"
+    padding="0"
+  as |primer rect|}}
+    {{!-- {{primer.line values=(scale values xScale=primer.xScale yScale=primer.yScale)}} --}}
+    {{primer.area values=(scale (p/sample values threshold=rect.width) xScale=primer.xScale yScale=primer.yScale)}}
+
+    {{#primer.cursor change=(action "cursorPositionChanged") values=values as |x y|}}
+      <line x1={{x}} x2={{x}} y1="0" y2={{y}} stroke="#66bb6a"></line>
+      <circle cx={{x}} cy={{y}} fill='#66bb6a' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
+      {{primer-label text=(primer/format tooltipValue format="$.2f") title="Stock Price" x=x}}
+    {{/primer.cursor}}
+
+    {{primer.axis "bottom" primer.xScale offsetY=4}}
+    {{primer.axis "left" primer.yScale offsetX=-4}}
+
+    <g class="ToolTip" transform="translate({{tooltipPositionX}},16)">
+      {{!-- <rect width="100" height="24" rx="2" ry="2" filter="url(#drop-shadow-{{elementId}})" fill="tomato"></rect> --}}
+    </g>
+  {{/primer.container}}
+{{/primer-plot}}

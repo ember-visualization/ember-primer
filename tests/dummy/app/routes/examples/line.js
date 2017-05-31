@@ -1,16 +1,40 @@
-import Ember from 'ember';
+import Route from 'ember-route';
+import RSVP from 'rsvp';
+import service from 'ember-service/inject';
+import { csvParse } from 'd3-dsv';
 
-export default Ember.Route.extend({
+const { keys } = Object;
+export default Route.extend({
 
-  setupController(controller) {
-    let data = [
-      { month: new Date(2016, 0, 1, 12), profit: 35000, loss: 2000 },
-      { month: new Date(2016, 1, 1, 12), profit: 42000, loss: 8000 },
-      { month: new Date(2016, 2, 1, 12), profit: 55000, loss: 5000 }
-    ];
+  ajax: service(),
 
-    let timeSeriesData = data.map((d) => [d.month, d.profit - d.loss]);
+  model() {
+    let ajax = this.get('ajax');
 
-    controller.setProperties({ timeSeriesData });
+    let stocks = {
+      'AAPL': null,
+      'GOOG': null,
+      'TSLA': null
+    };
+
+    keys(stocks).forEach((stock) => {
+      let url = `https://storage.googleapis.com/nasdaq-history/${stock}.csv`;
+
+      stocks[stock] = ajax.request(url, {
+        contentType: 'text/csv',
+        dataType: 'text'
+      }).then((data) => csvParse(data, (row) => {
+        return [
+          Date.parse(row.Date),
+          Number(row.Close)
+        ];
+      }));
+    });
+
+    return RSVP.hash(stocks);
+  },
+
+  setupController(controller, stockPrices) {
+    controller.setProperties({ stockPrices, timeSeriesData: stockPrices.TSLA });
   }
 });

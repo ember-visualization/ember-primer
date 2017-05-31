@@ -1,13 +1,12 @@
-{{#primer-plot as |primer|}}
-  {{#primer.container
-    (scale/time (extent timeSeriesData key="$0"))
-    (scale-linear (extent timeSeriesData key="$1"))
-    margin="56"
-    padding="0"
-  as |primer rect|}}
-    {{primer.line values=(scale timeSeriesData xScale=primer.xScale yScale=primer.yScale)}}
+<header>
+  <h2>Area with top line</h2>
 
-    {{primer.axis "bottom" primer.xScale offsetY}}
-    {{primer.axis "left" primer.yScale offsetX}}
-  {{/primer.container}}
-{{/primer-plot}}
+  <p class="secondary">In this simple example, we visualize the monthly stock price of $AAPL for May '17.</p>
+</header>
+
+<div class="TimeSeriesChart Card">
+  {{area-chart-example values=timeSeriesData tooltipPositionX=tooltipPositionX cursor-move=(action 'updateToolTipPosition')}}
+</div>
+<div class="TimeSeriesChart Card">
+  {{area-chart-example values=stockPrices.AAPL tooltipPositionX=tooltipPositionX cursor-move=(action 'updateToolTipPosition')}}
+</div>
