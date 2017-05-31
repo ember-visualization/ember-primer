@@ -19,6 +19,9 @@ const Container =  Component.extend({
   margin: '0',
   padding: '0',
 
+  xCursor: -1,
+  yCursor: -1,
+
   localizedXScale: computed('xScale', 'rect', {
     get() {
       let { xScale, rect } = this.getProperties('xScale', 'rect');
@@ -88,7 +91,13 @@ const Container =  Component.extend({
 
       return rect;
     }
-  })
+  }),
+
+  actions: {
+    updateCursorPosition([xValue, yValue], [xCursor, yCursor]) {
+      this.setProperties({ xCursor, yCursor });
+    }
+  }
 });
 
 Container.reopenClass({
