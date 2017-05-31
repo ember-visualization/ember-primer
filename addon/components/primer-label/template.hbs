@@ -1,0 +1,10 @@
+{{#if hasTitle}}<title>{{title}}</title>{{/if}}
+{{#if desc}}<desc>{{desc}}</desc>{{/if}}
+
+{{#if hasBlock~}}
+  <tspan x={{x}} y={{y}} dy={{spanDy}} dx={{dx}} textanchor={{textAnchor}}>{{yield data}}</tspan>
+{{~else}}
+  {{~#each textSpans as |span|~}}
+    <tspan x={{x}} y={{y}} dy={{spanDy}} dx={{dx}} textanchor={{textAnchor}}>{{span}}</tspan>
+  {{~/each~}}
+{{/if}}
