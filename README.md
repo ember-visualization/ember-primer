@@ -78,6 +78,9 @@ element.
 
 # Helpers
 
+Most helpers exposed in this addon are prefixed with `p/`, for example: `p/sample`. 
+This is to avoid name clashes with other addons and helpers you may already be using.
+
 ### `extent`
 
 The extent helper is used for finding the min and max values of an array of sorted data
