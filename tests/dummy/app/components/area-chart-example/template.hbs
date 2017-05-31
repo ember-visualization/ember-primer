@@ -22,7 +22,7 @@
     {{#primer.cursor change=(action "cursorPositionChanged") values=values as |x y|}}
       <line x1={{x}} x2={{x}} y1="0" y2={{y}} stroke="#66bb6a"></line>
       <circle cx={{x}} cy={{y}} fill='#66bb6a' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
-      {{primer-label text=(primer/format tooltipValue format="$.2f") title="Stock Price" x=x}}
+      {{primer-label text=(p/format tooltipValue format="$.2f") title="Stock Price" x=x}}
     {{/primer.cursor}}
 
     {{primer.axis "bottom" primer.xScale offsetY=4}}
