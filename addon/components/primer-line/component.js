@@ -31,17 +31,28 @@ const LineComponent = Component.extend({
 
   /**
    * Line stroke width
+   *
    * @public
+   * @default 1
    * @type {Number}
    */
   strokeWidth: 1,
+
+  /**
+   * The width of the transparent event target following this line.
+   *
+   * @public
+   * @default 10
+   * @type {Number}
+   */
+  eventTargetWidth: 10,
 
   /**
    * Line cap endings
    * @public
    * @type {String}
    */
-  strokeLineCap: 'rounded',
+  strokeLineCap: 'round',
 
   /**
    * Fill color
@@ -64,6 +75,15 @@ const LineComponent = Component.extend({
    */
   y: 0,
 
+  /**
+   * Used to position the path with an offset if needed from left,top. It computes
+   * a translate string for the transform attribute.
+   *
+   * @param  {Number} 'x' Offset X
+   * @param  {Number} 'y' Offset Y
+   * @return {String} Transform(Translate(x,y))
+   * @protected
+   */
   transform: computed('x', 'y', {
     get() {
       let { x, y } = this.getProperties('x', 'y');
@@ -71,6 +91,12 @@ const LineComponent = Component.extend({
     }
   }),
 
+  /**
+   * Returns the computed path data for the path element everytime the values change.
+   *
+   * @protected
+   * @returns {String} SVG Path Data
+   */
   pathData: computed('values.[]', 'interpolation', {
     get() {
       let { values, interpolation } = this.getProperties('values', 'interpolation');
@@ -85,7 +111,20 @@ const LineComponent = Component.extend({
 
       return lineFn(values);
     }
-  })
+  }),
+
+  /**
+   * Handles the mousemove event on the event target path. When this event fires,
+   * we send an action called mouse-move with the x,y coordinates of the mouse
+   * over the path.
+   *
+   * @public
+   * @action
+   */
+  mouseMove(event) {
+    let { offsetX, offsetY } = event;
+    this.sendAction('mouse-move', [offsetX, offsetY]);
+  }
 });
 
 LineComponent.reopenClass({
