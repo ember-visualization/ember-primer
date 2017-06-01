@@ -121,13 +121,7 @@
   version "0.22.3"
   resolved "https://registry.yarnpkg.com/@glimmer/util/-/util-0.22.3.tgz#8272f50905d1bb904ee371e8ade83fd779b51508"
 
-"@glimmer/wire-format@^0.22.1":
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.22.1.tgz#2673bbb1e89805194e9870064c6905af21406ffb"
-  dependencies:
-    "@glimmer/util" "^0.22.1"
-
-"@glimmer/wire-format@^0.22.3":
+"@glimmer/wire-format@^0.22.1", "@glimmer/wire-format@^0.22.3":
   version "0.22.3"
   resolved "https://registry.yarnpkg.com/@glimmer/wire-format/-/wire-format-0.22.3.tgz#19b226d9b93ba6ee54472d9ffb1d48e7c0d80a0d"
   dependencies:
@@ -2702,9 +2696,9 @@ ember-composable-helpers@^2.0.1:
     broccoli-funnel "^1.0.1"
     ember-cli-babel "^5.1.7"
 
-ember-d3@ivanvanderbyl/ember-d3#feature/use-rollup-and-simplify-loading:
-  version "0.3.3.beta"
-  resolved "https://codeload.github.com/ivanvanderbyl/ember-d3/tar.gz/b7d2359847e484e98c4028a0f0cd8e9c75568283"
+ember-d3@^0.4.0-beta.1:
+  version "0.4.0-beta.1"
+  resolved "https://registry.yarnpkg.com/ember-d3/-/ember-d3-0.4.0-beta.1.tgz#c01f97f91d128077edfc41a37b128a2aa5399ad4"
   dependencies:
     broccoli-merge-trees "^1.1.2"
     broccoli-rollup "^1.3.0"
