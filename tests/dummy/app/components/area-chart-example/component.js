@@ -4,6 +4,8 @@ import layout from './template';
 export default Ember.Component.extend({
   layout,
 
+  tagName: 'chart',
+
   tooltipPositionX: 0,
   tooltipPositionY: 0,
   tooltipValue: 0,
