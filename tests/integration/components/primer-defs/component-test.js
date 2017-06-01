@@ -6,20 +6,12 @@ moduleForComponent('primer-defs', 'Integration | Component | primer defs', {
 });
 
 test('it renders', function(assert) {
-
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{primer-defs}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
   this.render(hbs`
-    {{#primer-defs}}
-      template block text
+    {{#primer-defs chartId="emeber123" as |chartId|}}
+      <filter id="drop-shadow-{{chartId}}" height="200%" width="200%">
+      </filter>
     {{/primer-defs}}
   `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('defs filter').attr('id'), 'drop-shadow-emeber123', 'renders with chart id');
 });

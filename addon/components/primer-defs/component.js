@@ -3,5 +3,7 @@ import layout from './template';
 
 export default Component.extend({
   layout,
-  tagName: 'defs'
+  tagName: 'defs',
+
+  chartId: null
 });
