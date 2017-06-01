@@ -1,11 +1,13 @@
+{{#if title}}<title>{{title}}</title>{{/if}}
 {{#if desc}}<desc>{{desc}}</desc>{{/if}}
 
 {{yield (hash
   width=width
   height=height
 
+  container=(component containerComponentName width=width height=height)
+  defs=(component "primer-defs" chartId=elementId)
   group=(component "primer-group")
-  container=(component "primer-container" width=width height=height)
   cursor=(component "primer-cursor")
   line=(component "primer-line" tagName="g")
   area=(component "primer-area" tagName="g")

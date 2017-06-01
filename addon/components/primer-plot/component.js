@@ -11,5 +11,8 @@ export default Component.extend(ResizeableContainer, {
 
   attributeBindings: ['width', 'height'],
 
+  containerComponentName: 'primer-container',
+
+  title: null,
   desc: null
 });
