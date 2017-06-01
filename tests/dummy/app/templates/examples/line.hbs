@@ -7,6 +7,8 @@
 <div class="TimeSeriesChart Card">
   {{area-chart-example values=timeSeriesData tooltipPositionX=tooltipPositionX cursor-move=(action 'updateToolTipPosition')}}
 </div>
+
 <div class="TimeSeriesChart Card">
-  {{area-chart-example values=stockPrices.AAPL tooltipPositionX=tooltipPositionX cursor-move=(action 'updateToolTipPosition')}}
+  <header><h3>Multi-series chart</h3></header>
+  {{multi-line-chart-example stockPrices=stockPrices tooltipPositionX=tooltipPositionX cursor-move=(action 'updateToolTipPosition')}}
 </div>
