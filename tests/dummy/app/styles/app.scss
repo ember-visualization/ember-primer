@@ -47,10 +47,11 @@ content.Container {
   min-height: 100vh;
 
   aside.left {
-    flex-basis: 300px;
+    flex-basis: 100px;
     flex-grow: 400px;
     background: rgba(black, 0.05);
     padding: 1.5rem;
+    flex: 1;
 
     nav {
       display: block;
@@ -71,7 +72,7 @@ content.Container {
   }
 
   aside.right {
-    flex: 1;
+    flex: 4;
     flex-basis: 500px;
   }
 }
@@ -191,9 +192,10 @@ content.Container {
 }
 
 .TimeSeriesChart {
-  height: 260px;
-  svg {
-    height: 260px;
+  chart {
+    svg {
+      height: 260px;
+    }
   }
 }
 
@@ -211,6 +213,11 @@ header {
   border-radius: 3px;
   @extend .shadow-elevation-2dp;
   margin: 0.5rem;
+
+  header {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
 }
 
 .Primer-Axis {
