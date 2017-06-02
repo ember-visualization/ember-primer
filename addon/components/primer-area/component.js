@@ -5,7 +5,7 @@ import { area } from 'd3-shape';
 import curveLookup from 'ember-primer/utils/curve-lookup';
 
 const LineComponent = Component.extend({
-  tagName: '',
+  tagName: 'g',
   layout,
 
   /**
