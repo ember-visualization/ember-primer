@@ -1,5 +1,4 @@
 import Component from 'ember-component';
-import layout from './template';
 import { axisTop, axisRight, axisBottom, axisLeft } from 'd3-axis';
 import { select } from 'd3-selection';
 import run from 'ember-runloop';
@@ -23,8 +22,6 @@ function translateByOrientation(orientation, rect, offsetX, offsetY) {
 }
 
 const AxisComponent = Component.extend({
-  layout,
-
   tagName: 'g',
 
   classNames: ['Primer-Axis'],
