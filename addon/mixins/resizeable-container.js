@@ -39,14 +39,12 @@ export default Mixin.create({
       return;
     }
 
-    run.scheduleOnce('afterRender', this, () => {
-      let { minWidth, minHeight } = this.getProperties('minWidth', 'minHeight');
+    let { minWidth, minHeight } = this.getProperties('minWidth', 'minHeight');
 
-      let rect = this.element.getBoundingClientRect();
-      this.setProperties({
-        width: Math.max(rect.width, minWidth),
-        height: Math.max(rect.height, minHeight)
-      });
+    let rect = this.element.getBoundingClientRect();
+    this.setProperties({
+      width: Math.max(rect.width, minWidth),
+      height: Math.max(rect.height, minHeight)
     });
   }
 
