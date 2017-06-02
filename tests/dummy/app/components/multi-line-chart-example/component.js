@@ -1,7 +1,7 @@
 import Component from 'ember-component';
 import layout from './template';
 import computed from 'ember-computed';
-const { keys } = Object;
+const { keys, entries } = Object;
 
 import { extent, ascending } from 'd3-array';
 import { interpolateWarm, scaleLinear } from 'd3-scale';
@@ -11,7 +11,59 @@ export default Component.extend({
 
   tagName: 'chart',
 
+  /**
+   * Input data
+   * @public
+   * @readOnly
+   * @type {Array}
+   */
   stockPrices: [],
+
+  /**
+   * Returns an array containing the values for each series and a base timestamp.
+   * @protected
+   * @return {Array[Array]}
+   */
+  stockPriceSeries: computed('stockPrices.[]', {
+    get() {
+      let stockPricesHash = entries(this.get('stockPrices'));
+      let series = [];
+
+      for (let [, values] of stockPricesHash) {
+        values.forEach(([timestamp, value], index) => {
+          if (!series[index]) {
+            series[index] = [timestamp];
+          }
+
+          series[index].push(value);
+        });
+      }
+
+      return series;
+    }
+  }),
+
+  values: computed('stockPrices.[]', {
+    get() {
+      let stockPricesHash = entries(this.get('stockPrices'));
+      let data = {
+        timestamps: [],
+        values: []
+      };
+
+      for (let [, values] of stockPricesHash) {
+        values.forEach(([timestamp, value], index) => {
+          if (!data.timestamps[index]) {
+            data.timestamps[index] = timestamp;
+            data.values[index] = [];
+          }
+          data.values[index].push(value);
+        });
+      }
+
+      return data;
+    }
+  }),
 
   stockPriceExtent: computed('stockPrices.[]', {
     get() {
@@ -42,7 +94,6 @@ export default Component.extend({
       let stockPrices = this.get('stockPrices');
       let colors = (index) => {
         let scale = scaleLinear().domain([0, keys(stockPrices).length]).range([0, 1]);
-        console.log(scale(index), index);
         return interpolateWarm(scale(index));
       };
       let stocks = [];
