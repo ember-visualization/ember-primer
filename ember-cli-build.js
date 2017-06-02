@@ -25,6 +25,10 @@ module.exports = function(defaults) {
           }
         ]
       }
+    },
+
+    vendorFiles: {
+      'jquery.js': null
     }
   });
 
