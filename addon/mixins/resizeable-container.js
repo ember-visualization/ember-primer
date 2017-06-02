@@ -1,8 +1,7 @@
-import DOM from 'ember-lifeline/mixins/dom';
 import Mixin from 'ember-metal/mixin';
 import run from 'ember-runloop';
 
-export default Mixin.create(DOM, {
+export default Mixin.create({
 
   minHeight: 50,
 
@@ -16,9 +15,13 @@ export default Mixin.create(DOM, {
     this._super(...arguments);
 
     if (this.get('width') === null) {
-      this.addEventListener(window, `resize.${ this.elementId }`, this.didResize);
-      run.scheduleOnce('afterRender', this, this.measureDimensions);
+      window.addEventListener(`resize.${ this.elementId }`, this.didResize.bind(this));
+      run.scheduleOnce('render', this, this.measureDimensions);
     }
+  },
+
+  willRemoveElement() {
+    window.removeEventListener(`resize.${ this.elementId }`, this.didResize);
   },
 
   didResize() {
