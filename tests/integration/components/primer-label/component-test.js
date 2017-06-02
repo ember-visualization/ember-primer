@@ -33,3 +33,8 @@ test('it renders transform', function(assert) {
   assert.equal(find('text').getAttribute('transform'), 'rotate(90,24,16)', 'correctly computed transform attr');
 });
 
+test('it accepts positional params', function(assert) {
+  this.render(hbs`{{primer-label "My Label"}}`);
+  assert.equal(find('text').textContent.trim(), 'My Label');
+});
+

@@ -3,10 +3,12 @@ import computed from 'ember-computed';
 import layout from './template';
 import transformString from 'ember-primer/utils/transform-string';
 
-export default Component.extend({
+const Label = Component.extend({
   layout,
 
   tagName: 'text',
+
+  classNames: ['Primer-Label'],
 
   /**
    * Title attribute for accessibility
@@ -156,3 +158,9 @@ export default Component.extend({
     }
   })
 });
+
+Label.reopenClass({
+  positionalParams: ['text']
+});
+
+export default Label;
