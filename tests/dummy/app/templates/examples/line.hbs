@@ -5,10 +5,10 @@
 </header>
 
 <div class="TimeSeriesChart Card">
-  {{area-chart-example values=timeSeriesData tooltipPositionX=tooltipPositionX cursor-move=(action 'updateToolTipPosition')}}
+  {{area-chart-example values=timeSeriesData cursorPosition=cursorPosition global-cursor-change=(action 'updateToolTipPosition')}}
 </div>
 
 <div class="TimeSeriesChart Card">
   <header><h3>Multi-series chart</h3></header>
-  {{multi-line-chart-example stockPrices=stockPrices tooltipPositionX=tooltipPositionX cursor-move=(action 'updateToolTipPosition')}}
+  {{multi-line-chart-example stockPrices=stockPrices cursorPosition=cursorPosition global-cursor-change=(action 'updateToolTipPosition')}}
 </div>
