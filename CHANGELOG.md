@@ -1,6 +1,10 @@
 # `ember-primer`
 
-## 0.0.0
+## v0.1.2
+
+- Cursor now shows latest position by default
+- Container is aware of cursor position, paving the way for inserting cursor position.
+
 ## v0.1.1
 
 - Updated label component to accept positional params
