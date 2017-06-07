@@ -19,6 +19,8 @@ const Container =  Component.extend({
   margin: '0',
   padding: '0',
 
+  cursorPosition: [],
+
   xCursor: -1,
   yCursor: -1,
 
