@@ -20,7 +20,6 @@
   "dependencies": {
     "ember-cli-babel": "^6.1.0",
     "ember-cli-htmlbars": "^2.0.1",
-    "ember-component-css": "^0.3.3",
     "ember-composable-helpers": "^2.0.1",
     "ember-d3": "^0.4.0-beta.1"
   },
@@ -61,6 +60,7 @@
     "node": ">= 4"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "after": ["ember-d3", "d3"]
   }
 }
