@@ -24,14 +24,20 @@ export default Component.extend({
 
   _lastPosition: [],
 
+  position: [],
+
+  showLatestWhenInactive: true,
+
   didInsertElement() {
     let svg = this.element.closest('svg');
     svg.addEventListener('mousemove', this.handleMouseMove.bind(this));
     svg.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
     svg.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
+
+    run.next(this, this.handleMouseLeave);
   },
 
-  willRemoveElement() {
+  willDestroyElement() {
     let svg = this.element.closest('svg');
     svg.removeEventListener('mousemove', this.handleMouseMove);
     svg.removeEventListener('mouseleave', this.handleMouseLeave);
@@ -43,7 +49,17 @@ export default Component.extend({
   },
 
   handleMouseLeave() {
-    this.set('isActive', false);
+    let showLatestWhenInactive = this.get('showLatestWhenInactive');
+
+    if (showLatestWhenInactive) {
+      let xScale = this.get('xScale');
+      let values = this.get('values');
+      let [x1] = values[values.length - 1];
+      this._mouseMove({ isActive: true, y: 0, x: xScale(x1) });
+
+    } else {
+      this.set('isActive', false);
+    }
   },
 
   handleMouseEnter() {
@@ -52,6 +68,23 @@ export default Component.extend({
 
   _convertCursorCoordinatesToDataCoordinates([x, y]) {
     return this.getAttr('convertCursorCoordinatesToDataCoordinates')([x, y]);
+  },
+
+  didReceiveAttrs() {
+
+  //   let xLast = this.get('x');
+  //   let [x, y] = this.get('position');
+
+  //   if (xLast !== x) {
+  //     // let { offsetY: y, offsetX: x } = event;
+  //     let { xScale, yScale, values } = this.getProperties('xScale', 'yScale', 'values');
+  //     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
+
+  //     // console.log(this.debugKey, xLast, xPointer);
+  //     let [[xPointer, yPointer], [xValue, ...yValues]] = closestPoint([x, y], [xOffset, yOffset], xScale, yScale, values);
+
+  //     this.setProperties({ isActive: true, x: xPointer, y: yPointer });
+  //   }
   },
 
   _mouseMove(event) {
