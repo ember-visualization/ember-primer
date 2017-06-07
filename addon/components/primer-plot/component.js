@@ -14,5 +14,13 @@ export default Component.extend(ResizeableContainer, {
   containerComponentName: 'primer-container',
 
   title: null,
-  desc: null
+  desc: null,
+
+  cursorPosition: [0, 0],
+
+  actions: {
+    cursorChangedPosition([xValue, yValue], [xCursor, yCursor]) {
+      this.sendAction('cursor-moved', [xValue, yValue], [xCursor, yCursor]);
+    }
+  }
 });

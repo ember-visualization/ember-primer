@@ -5,7 +5,7 @@
   width=width
   height=height
 
-  container=(component containerComponentName width=width height=height)
+  container=(component containerComponentName width=width height=height cursorPosition=cursorPosition _cursorChangedPosition=(action "cursorChangedPosition"))
   defs=(component "primer-defs" chartId=elementId)
   group=(component "primer-group")
   cursor=(component "primer-cursor")
