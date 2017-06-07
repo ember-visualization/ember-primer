@@ -1,4 +1,4 @@
-{{#primer-plot as |primer|}}
+{{#primer-plot cursorPosition=cursorPosition cursor-moved=(action "cursorPositionChanged") as |primer|}}
   {{#primer.defs as |chartId|}}
     <filter id="drop-shadow-{{chartId}}" height="200%" width="200%">
       <feComponentTransfer in="SourceAlpha" result="mask">
@@ -23,7 +23,7 @@
       }}
     {{/each}}
 
-    {{#primer.cursor values=stockPriceSeries as |x y|}}
+    {{#primer.cursor debugKey="single-line-chart" values=stockPriceSeries as |x y|}}
       <line x1={{x}} x2={{x}} y1="0" y2={{y}} stroke="#66bb6a"></line>
       <circle cx={{x}} cy={{y}} fill='#66bb6a' r="4" filter="url(#drop-shadow-{{primer.chartId}})"></circle>
       {{primer-label text=(p/format tooltipValue format="$.2f") title="Stock Price" x=x}}

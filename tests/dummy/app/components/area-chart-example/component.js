@@ -6,15 +6,11 @@ export default Ember.Component.extend({
 
   tagName: 'chart',
 
-  tooltipPositionX: 0,
-  tooltipPositionY: 0,
-  tooltipValue: 0,
+  cursorPosition: [0, 0],
 
   actions: {
-    cursorPositionChanged(item, [x, y]) {
-      this.set('tooltipValue', item[1]);
-      this.set('tooltipPositionX', x);
-      this.set('tooltipPositionY', y);
+    cursorPositionChanged([xValue, yValue], [xCursor, yCursor]) {
+      this.sendAction('global-cursor-change', [xCursor, yCursor]);
     }
   }
 });

@@ -11,6 +11,8 @@ export default Component.extend({
 
   tagName: 'chart',
 
+  cursorPosition: [0, 0],
+
   /**
    * Input data
    * @public
@@ -109,8 +111,8 @@ export default Component.extend({
   }),
 
   actions: {
-    cursorPositionChanged() {
-
+    cursorPositionChanged([xValue, yValue], [xCursor, yCursor]) {
+      this.sendAction('global-cursor-change', [xCursor, yCursor]);
     }
   }
 });

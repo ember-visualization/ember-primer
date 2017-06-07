@@ -1,4 +1,4 @@
-{{#primer-plot as |primer|}}
+{{#primer-plot cursorPosition=cursorPosition cursor-moved=(action "cursorPositionChanged") as |primer|}}
   <defs>
     <filter id="drop-shadow-{{elementId}}" height="200%" width="200%">
       <feComponentTransfer in="SourceAlpha" result="mask">
@@ -19,7 +19,7 @@
     {{!-- {{primer.line values=(scale values xScale=primer.xScale yScale=primer.yScale)}} --}}
     {{primer.area values=(scale (p/sample values threshold=rect.width) xScale=primer.xScale yScale=primer.yScale)}}
 
-    {{#primer.cursor change=(action "cursorPositionChanged") values=values as |x y|}}
+    {{#primer.cursor change=(action "cursorPositionChanged") debugKey="area-chart" values=values as |x y|}}
       <line x1={{x}} x2={{x}} y1="0" y2={{y}} stroke="#66bb6a"></line>
       <circle cx={{x}} cy={{y}} fill='#66bb6a' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
       {{primer-label text=(p/format tooltipValue format="$.2f") title="Stock Price" x=x}}
@@ -28,8 +28,8 @@
     {{primer.axis "bottom" primer.xScale offsetY=4}}
     {{primer.axis "left" primer.yScale offsetX=-4}}
 
-    <g class="ToolTip" transform="translate({{tooltipPositionX}},16)">
+    {{!-- <g class="ToolTip" transform="translate({{tooltipPositionX}},16)"> --}}
       {{!-- <rect width="100" height="24" rx="2" ry="2" filter="url(#drop-shadow-{{elementId}})" fill="tomato"></rect> --}}
-    </g>
+    {{!-- </g> --}}
   {{/primer.container}}
 {{/primer-plot}}
