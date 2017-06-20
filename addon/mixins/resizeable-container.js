@@ -64,7 +64,7 @@ export default Mixin.create({
 
     if (this.get('width') === null) {
       this.addGlobalEvents();
-      this.startObservingDomMutations();
+      // this.startObservingDomMutations();
 
       // window.addEventListener(`resize.${ this.elementId }`, this.didResize.bind(this));
       run.scheduleOnce('render', this, this.measureDimensions);
