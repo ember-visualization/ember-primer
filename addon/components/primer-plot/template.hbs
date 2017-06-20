@@ -1,16 +1,22 @@
 {{#if title}}<title>{{title}}</title>{{/if}}
 {{#if desc}}<desc>{{desc}}</desc>{{/if}}
 
-{{yield (hash
+{{!-- {{#if contentRect.client}}
+  {{#component containerComponentName
+    width=width
+    height=height
+    cursorPosition=cursorPosition
+    update-cursor-position=(action "updateCursorPosition")
+  as |primer|}}
+    {{yield primer}}
+  {{/component}}
+{{/if}} --}}
+
+{{#primer-container
   width=width
   height=height
-
-  container=(component containerComponentName width=width height=height cursorPosition=cursorPosition _cursorChangedPosition=(action "cursorChangedPosition"))
-  defs=(component "primer-defs" chartId=elementId)
-  group=(component "primer-group")
-  cursor=(component "primer-cursor")
-  line=(component "primer-line" tagName="g")
-  area=(component "primer-area" tagName="g")
-  transition=(component "primer-transition")
-  axis=(component "primer-axis")
-)}}
+  cursorPosition=cursorPosition
+  update-cursor-position=(action "updateCursorPosition")
+as |primer|}}
+  {{yield primer}}
+{{/primer-container}}

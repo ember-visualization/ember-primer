@@ -2,7 +2,6 @@ import Component from 'ember-component';
 import closestPoint from 'ember-primer/utils/find-closest-cursor-points';
 import run from 'ember-runloop';
 import layout from './template';
-import { ascending } from 'd3-array';
 
 export default Component.extend({
   layout,
@@ -55,7 +54,7 @@ export default Component.extend({
       let xScale = this.get('xScale');
       let values = this.get('values');
       let [x1] = values[values.length - 1];
-      this._mouseMove({ isActive: true, y: 0, x: xScale(x1) });
+      this._mouseMove({ isActive: true, offsetY: 0, offsetX: xScale(x1) }, false);
 
     } else {
       this.set('isActive', false);
@@ -66,28 +65,18 @@ export default Component.extend({
     this.set('isActive', true);
   },
 
-  _convertCursorCoordinatesToDataCoordinates([x, y]) {
-    return this.getAttr('convertCursorCoordinatesToDataCoordinates')([x, y]);
-  },
-
   didReceiveAttrs() {
+    let isActive = this.get('isActive');
+    let [xNew, yNew] = this.get('position') || [];
+    let [xLast, yLast] = this._lastPosition || [];
+    let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
 
-  //   let xLast = this.get('x');
-  //   let [x, y] = this.get('position');
-
-  //   if (xLast !== x) {
-  //     // let { offsetY: y, offsetX: x } = event;
-  //     let { xScale, yScale, values } = this.getProperties('xScale', 'yScale', 'values');
-  //     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
-
-  //     // console.log(this.debugKey, xLast, xPointer);
-  //     let [[xPointer, yPointer], [xValue, ...yValues]] = closestPoint([x, y], [xOffset, yOffset], xScale, yScale, values);
-
-  //     this.setProperties({ isActive: true, x: xPointer, y: yPointer });
-  //   }
+    if ((xLast !== xNew || yLast !== yNew)) {
+      this._mouseMove({ isActive: true, offsetY: yNew + yOffset, offsetX: xNew + xOffset }, false);
+    }
   },
 
-  _mouseMove(event) {
+  _mouseMove(event, trigger = true) {
     let { offsetY: y, offsetX: x } = event;
     let { xScale, yScale, values } = this.getProperties('xScale', 'yScale', 'values');
     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
@@ -101,8 +90,10 @@ export default Component.extend({
       let [xLast, yLast] = this._lastPosition;
       if (xLast !== xPointer || yLast !== yPointer) {
         this.setProperties({ isActive: true, x: xPointer, y: yPointer });
-        this.sendAction('change', [xValue, yValues], [xPointer, yPointer]);
-        this.sendAction('_change', [xValue, yValues], [xPointer, yPointer]);
+
+        if (trigger) {
+          this.sendAction('_change', [xValue, yValues], [xPointer, yPointer]);
+        }
 
         this._lastPosition = [xPointer, yPointer];
       }

@@ -19,7 +19,7 @@ const Container =  Component.extend({
   margin: '0',
   padding: '0',
 
-  cursorPosition: [],
+  cursorPosition: [0, 0],
 
   xCursor: -1,
   yCursor: -1,
@@ -97,8 +97,10 @@ const Container =  Component.extend({
 
   actions: {
     updateCursorPosition([xValue, yValue], [xCursor, yCursor]) {
-      this.setProperties({ cursorPosition: [xCursor, yCursor] });
-      this.sendAction('_cursorChangedPosition', [xValue, yValue], [xCursor, yCursor]);
+      this.sendAction('update-cursor-position', [xValue, yValue], [xCursor, yCursor]);
+
+      // this.setProperties({ cursorPosition: [xCursor, yCursor] });
+      // this.sendAction('_cursorChangedPosition', [xValue, yValue], [xCursor, yCursor]);
     }
   }
 });
