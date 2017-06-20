@@ -7,14 +7,23 @@ moduleForComponent('primer-plot', 'Integration | Component | primer plot', {
 });
 
 test('it renders the SVG tag', function(assert) {
+  const done = assert.async();
+
   this.render(hbs`
-    {{#primer-plot as |primer|}}
-    {{/primer-plot}}
+    <div style="width: 100px; height: 100px; display: block; position:relative; transform:scale(1);">
+      {{#primer-plot as |primer|}}
+      {{/primer-plot}}
+    </div>
   `);
 
   assert.ok(findWithAssert('svg'), 'svg tag on page');
+  assert.equal(find('svg').getAttribute('role'), 'img', 'svg role');
+  assert.equal(find('svg').getAttribute('aria-labelledby'), 'title desc', 'svg aria-labelledby');
   assert.equal(find('svg').getAttribute('width'), '640', 'svg has width');
   assert.equal(find('svg').getAttribute('height'), '250', 'svg has height');
+
+  // setTimeout(() => done(), 20000);
+
 });
 
 test('it disables auto size if width is specified', function(assert) {
@@ -39,7 +48,6 @@ test('it renders the container', async function(assert) {
   `);
 
   let text = await find('text').textContent;
-  console.log(text);
 
   assert.equal(await find('svg').getAttribute('width'), '100', 'svg has width');
   assert.equal(await find('svg').getAttribute('height'), '100', 'svg has height');
