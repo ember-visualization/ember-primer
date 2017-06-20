@@ -1,0 +1,53 @@
+{{#primer-plot
+  cursorPosition=cursorPosition
+  cursor-moved=(action "updateCursorPosition")
+as |primer|}}
+  <defs>
+    <filter id="drop-shadow-{{elementId}}" height="200%" width="200%">
+      <feComponentTransfer in="SourceAlpha" result="mask">
+        <feFuncA type="linear" slope="0.2" intercept="0"></feFuncA>
+      </feComponentTransfer>
+      <feGaussianBlur in="mask" stdDeviation="1" result="blur"></feGaussianBlur>
+      <feOffset in="blur" dx="0" dy="2" result="offset"></feOffset>
+      <feBlend in="SourceGraphic" in2="offset"></feBlend>
+    </filter>
+  </defs>
+
+  {{primer-label text=title fontSize=16 y=2 x=32}}
+
+  {{#primer.container
+    xScale
+    yScale
+    margin="40 32 32"
+  as |primer rect|}}
+
+    {{#if isPercentageMetric}}
+      <rect fill="#FF9800" fill-opacity="0.1" stroke="none" x="0" width={{rect.width}} y={{p/scale-value primer.yScale 100}} height={{p/scale-value primer.yScale 80}}></rect>
+    {{/if}}
+
+    {{#each activeFloods as |flood|}}
+      <rect fill="#15CD72" fill-opacity="0.3" stroke="#15CD72" stroke-opacity="0.4" stroke-width="0.5" x={{p/scale-value primer.xScale flood.startedAt}} width={{p/scale-value primer.xScale flood.stoppedAt}} y={{rect.height}} height="8"></rect>
+    {{/each}}
+
+    {{primer.axis "bottom" primer.xScale offsetY=10 ticks=5}}
+    {{primer.axis "right" primer.yScale offsetX=(div rect.width -1) ticks=4 tickSizeInner=rect.width}}
+
+    {{primer.area
+      fill="#4285f4"
+      topLineStroke="#4285f4"
+      values=(scale (p/sample values threshold=rect.width) xScale=primer.xScale yScale=primer.yScale)
+    }}
+
+    {{#primer.cursor values=values as |x y|}}
+      <line x1={{x}} x2={{x}} y1="0" y2={{y}} stroke="#4285f4"></line>
+      <circle cx={{x}} cy={{y}} fill='#4285f4' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
+
+      {{#if isPercentageMetric}}
+        {{primer-label text=(p/format (div (p/scale-invert primer.yScale y) 100) format=".2%") fontSize=8 y=-16 x=x textAnchor=(if (gt 100 x) "start" "end")}}
+      {{else}}
+        {{primer-label text=(p/format cursorValue.y format=",d") fontSize=8 y=-16 x=x textAnchor="end"}}
+      {{/if}}
+    {{/primer.cursor}}
+
+  {{/primer.container}}
+{{/primer-plot}}

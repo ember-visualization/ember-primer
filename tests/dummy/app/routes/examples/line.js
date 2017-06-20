@@ -14,7 +14,8 @@ export default Route.extend({
     };
 
     keys(stocks).forEach((stock) => {
-      let url = `https://storage.googleapis.com/nasdaq-history/${stock}.csv`;
+      // let url = `https://storage.googleapis.com/nasdaq-history/${stock}.csv`;
+      let url = `/data/${stock}.csv`;
 
       stocks[stock] = fetch(url, {
         contentType: 'text/csv',

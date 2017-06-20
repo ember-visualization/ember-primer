@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('margin');
     this.route('scatter');
     this.route('line');
+    this.route('interactive-area');
   });
 });
 

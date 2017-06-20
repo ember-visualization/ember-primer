@@ -28,7 +28,7 @@ a, a:visited {
   text-decoration: none;
 }
 
-.Primer-Plot {
+chart .Primer-Plot {
   width: 100%;
   // height: 500px;
   height: 100vh;
@@ -201,7 +201,7 @@ content.Container {
 
 header {
   padding: 1rem 1.5rem;
-  background: #66bb6a;
+  background: darken(white, 1%);
   h2 {
     line-height: 1.5rem;
     margin: 0;
@@ -232,3 +232,40 @@ header {
 
   }
 }
+
+.ResourceUsageChart {
+  height: 180px;
+  width: 100%;
+  padding: 0;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .Primer-Label {
+    font-size: 1.2rem;
+    fill: $primary-grey;
+  }
+
+  svg .tick line {
+    stroke: $secondary-grey;
+    stroke-opacity: 0.12;
+    stroke-width: 0.5;
+  }
+
+  svg .tick:last-of-type line {
+    stroke: #ff1744;
+    stroke-opacity: 1;
+  }
+
+  svg .tick:nth-of-type(5) line {
+    stroke-dasharray: 5 2;
+    stroke: #FF9800;
+    stroke-opacity: 0.8;
+  }
+
+}
+
+
+

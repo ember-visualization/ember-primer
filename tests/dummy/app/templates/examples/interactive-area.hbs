@@ -1,0 +1,26 @@
+<header>
+  <h2>Interactive Area Chart</h2>
+
+  <p class="secondary">
+    This example uses real world CPU, Memory, and Disk IO data captured from a
+    server monitoring tool and presented as percentage of available resources.
+  </p>
+
+  <p class="secondary">
+    When interacting with a single chart, its cursor position is shared with all
+    other charts, allowing you to view data for all charts at once.
+  </p>
+</header>
+
+{{#each resourceUsageData as |series|}}
+  {{resource-usage-timeline
+    startedAt=startedAt
+    stoppedAt=stoppedAt
+    values=series.pointlist
+    metric=series.metric
+    floods=series.floods
+    interval=series.interval
+    cursorPosition=cursorData
+    cursor-moved=(action (mut cursorData))
+  }}
+{{/each}}
