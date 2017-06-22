@@ -1,6 +1,12 @@
 # `ember-primer`
 
+## v0.1.4
+
+- Restructured cursor component and changed cursor API. Now possible to specify a cursor location.
+- Added CPU/Mem example to dummy app.
+
 ## v0.1.3
+
 - Updated ember-d3 to latest beta
 
 ## v0.1.2
