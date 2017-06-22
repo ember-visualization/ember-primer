@@ -1,22 +1,21 @@
-{{#if title}}<title>{{title}}</title>{{/if}}
-{{#if desc}}<desc>{{desc}}</desc>{{/if}}
+<svg class="Primer-Plot"
+  width={{width}}
+  height={{height}}
+  viewBox={{viewBox}}
+  aria-labelledby={{ariaLabelledBy}}
+  role={{role}}>
 
-{{!-- {{#if contentRect.client}}
-  {{#component containerComponentName
-    width=width
-    height=height
-    cursorPosition=cursorPosition
-    update-cursor-position=(action "updateCursorPosition")
-  as |primer|}}
-    {{yield primer}}
-  {{/component}}
-{{/if}} --}}
+  {{#if title}}<title>{{title}}</title>{{/if}}
+  {{#if desc}}<desc>{{desc}}</desc>{{/if}}
 
-{{#primer-container
-  width=width
-  height=height
-  cursorPosition=cursorPosition
-  update-cursor-position=(action "updateCursorPosition")
-as |primer|}}
-  {{yield primer}}
-{{/primer-container}}
+  {{#if contentRect.client}}
+    {{#primer-container
+      width=width
+      height=height
+      cursorPosition=cursorPosition
+      update-cursor-position=(action "updateCursorPosition")
+    as |primer|}}
+      {{yield primer}}
+    {{/primer-container}}
+  {{/if}}
+</svg>

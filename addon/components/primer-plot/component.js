@@ -6,11 +6,11 @@ import computed from 'ember-computed';
 
 export default Component.extend(WithContentRect, {
   layout,
-  tagName: 'svg',
+  tagName: 'div',
 
-  classNames: ['Primer-Plot', 'Primer-Chart'],
+  classNames: ['Primer-Chart'],
 
-  attributeBindings: ['width', 'height', 'viewBox', 'ariaLabelledBy:aria-labelledby', 'role'],
+  // attributeBindings: ['width', 'height', 'viewBox', 'ariaLabelledBy:aria-labelledby', 'role'],
 
   containerComponentName: 'primer-container',
 
