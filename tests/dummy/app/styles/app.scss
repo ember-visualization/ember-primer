@@ -238,9 +238,13 @@ header {
   width: 100%;
   padding: 0;
 
-  svg {
+  .Primer-Chart {
     width: 100%;
     height: 100%;
+
+    svg {
+      width: 100%;
+    }
   }
 
   .Primer-Label {

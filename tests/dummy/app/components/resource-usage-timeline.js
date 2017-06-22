@@ -54,7 +54,6 @@ export default Component.extend({
       let { startedAt, stoppedAt } = this.getProperties('startedAt', 'stoppedAt');
 
       if (!stoppedAt) {
-        console.log('Settting to stopped at to now');
         stoppedAt = new Date();
       }
 
@@ -96,12 +95,6 @@ export default Component.extend({
     updateCursorPosition([x, y], [xCursor, yCursor]) {
       this.set('cursorPosition', [xCursor, yCursor]);
       this.sendAction('cursor-moved', [xCursor, yCursor]);
-
-      // if (this.get('isPercentageMetric')) {
-      // this.set('cursorValue', { x, y: y / 100 });
-      // } else {
-      //   this.set('cursorValue', { x, y });
-      // }
     }
 
   }

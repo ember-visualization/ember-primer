@@ -38,14 +38,14 @@ as |primer|}}
       values=(scale (p/sample values threshold=rect.width) xScale=primer.xScale yScale=primer.yScale)
     }}
 
-    {{#primer.cursor values=values as |x y|}}
-      <line x1={{x}} x2={{x}} y1="0" y2={{y}} stroke="#4285f4"></line>
-      <circle cx={{x}} cy={{y}} fill='#4285f4' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
+    {{#primer.cursor values=values as |cursor|}}
+      <line x1={{cursor.x}} x2={{cursor.x}} y1="0" y2={{cursor.y}} stroke="#4285f4"></line>
+      <circle cx={{cursor.x}} cy={{cursor.y}} fill='#4285f4' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
 
       {{#if isPercentageMetric}}
-        {{primer-label text=(p/format (div (p/scale-invert primer.yScale y) 100) format=".2%") fontSize=8 y=-16 x=x textAnchor=(if (gt 100 x) "start" "end")}}
+        {{primer-label text=(p/format (div (p/scale-invert primer.yScale cursor.y) 100) format=".2%") fontSize=8 y=-16 x=cursor.x textAnchor=(if (gt 100 cursor.x) "start" "end")}}
       {{else}}
-        {{primer-label text=(p/format cursorValue.y format=",d") fontSize=8 y=-16 x=x textAnchor="end"}}
+        {{primer-label text=(p/format cursorValue.y format=",d") fontSize=8 y=-16 x=cursor.x textAnchor="end"}}
       {{/if}}
     {{/primer.cursor}}
 
