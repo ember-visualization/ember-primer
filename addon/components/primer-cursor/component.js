@@ -78,11 +78,12 @@ export default Component.extend({
 
   didReceiveAttrs() {
     let hasMouse = this.get('hasMouse');
+    let values = this.get('values');
     let [xNew, yNew] = this.get('position') || [];
     let [xLast, yLast] = this._lastPosition || [];
     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
 
-    if ((xLast !== xNew || yLast !== yNew) && !hasMouse) {
+    if ((xLast !== xNew || yLast !== yNew) && !hasMouse && values.length > 2) {
       this._mouseMove({ offsetY: yNew + yOffset, offsetX: xNew + xOffset }, false);
     }
   },
@@ -98,9 +99,13 @@ export default Component.extend({
     if (showLatestWhenInactive) {
       let xScale = this.get('xScale');
       let values = this.get('values');
-      let [x1] = values[values.length - 1];
-      this.setProperties({ isActive: true, hasMouse: false });
-      this._mouseMove({ offsetY: 0, offsetX: xScale(x1) + xOffset }, true);
+
+      if (values.length > 2) {
+        let [x1] = values[values.length - 1] || [];
+
+        this.setProperties({ isActive: true, hasMouse: false });
+        this._mouseMove({ offsetY: 0, offsetX: xScale(x1) + xOffset }, true);
+      }
     } else {
       this.setProperties({ isActive: false, hasMouse: false });
     }
