@@ -93,13 +93,14 @@ export default Component.extend({
 
   _handleMouseLeave() {
     let showLatestWhenInactive = this.get('showLatestWhenInactive');
+    let { xOffset } = this.getProperties('xOffset');
 
     if (showLatestWhenInactive) {
       let xScale = this.get('xScale');
       let values = this.get('values');
       let [x1] = values[values.length - 1];
       this.setProperties({ isActive: true, hasMouse: false });
-      this._mouseMove({ offsetY: 0, offsetX: xScale(x1) }, true);
+      this._mouseMove({ offsetY: 0, offsetX: xScale(x1) + xOffset }, true);
     } else {
       this.setProperties({ isActive: false, hasMouse: false });
     }
@@ -115,9 +116,9 @@ export default Component.extend({
     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
 
     if (xScale) {
-      let [[xPointer, yPointer], [xValue, ...yValues]] = closestPoint([x, y], [xOffset, yOffset], xScale, yScale, values);
+      let [[xPointer, yPointer] = [0, 0], [xValue, ...yValues] = [0, [0]]] = closestPoint([x, y], [xOffset, yOffset], xScale, yScale, values);
 
-      let [xLast, yLast] = this._lastPosition;
+      let [xLast, yLast] = this._lastPosition || [0, 0];
       if (xLast !== xPointer || yLast !== yPointer) {
         this.setProperties({
           isActive: true,
