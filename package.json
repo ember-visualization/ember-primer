@@ -18,7 +18,8 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "ember-cli-babel": "^6.1.0",
+    "babel-plugin-transform-regenerator": "^6.24.1",
+    "ember-cli-babel": "^6.4.1",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-composable-helpers": "^2.0.1",
     "ember-d3": "^0.4.0-beta.2"
@@ -47,7 +48,7 @@
     "ember-load-initializers": "^1.0.0",
     "ember-math-helpers": "^2.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-measure": "^1.0.0",
+    "ember-measure": "^1.0.2",
     "ember-native-dom-event-dispatcher": "^0.6.1",
     "ember-native-dom-helpers": "^0.4.1",
     "ember-resolver": "^4.0.0",
