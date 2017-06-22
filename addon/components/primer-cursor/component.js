@@ -15,39 +15,82 @@ export default Component.extend({
 
   values: [],
 
-  x: 0,
+  /**
+   * Represents the cursor object, which is part of the public API.
+   *
+   * @public
+   * @type {Object}
+   */
+  cursor: {
+    x: 0,
+    y: 0,
+    xValues: 0,
+    yValues: [0]
+  },
 
-  y: 0,
-
+  /**
+   * Indicates whether the cursor is visible on the chart
+   * @protected
+   * @type {Boolean}
+   */
   isActive: false,
+
+  /**
+   * Indicates if the mouse is within the bounds of the chart
+   * @protected
+   * @type {Boolean}
+   */
+  hasMouse: false,
 
   _lastPosition: [],
 
+  /**
+   * Public API for setting the current position
+   * @public
+   * @type {Array}
+   */
   position: [],
 
+  /**
+   * Indicates whether to display the latest result when the mouse isn't in the
+   * chart bounds.
+   *
+   * @public
+   * @type {Boolean}
+   */
   showLatestWhenInactive: true,
 
   didInsertElement() {
     let svg = this.element.closest('svg');
-    svg.addEventListener('mousemove', this.handleMouseMove.bind(this));
-    svg.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
-    svg.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
+    svg.addEventListener('mousemove', this._handleMouseMove.bind(this));
+    svg.addEventListener('mouseleave', this._handleMouseLeave.bind(this));
+    svg.addEventListener('mouseenter', this._handleMouseEnter.bind(this));
 
-    run.next(this, this.handleMouseLeave);
+    run.next(this, this._handleMouseLeave);
   },
 
   willDestroyElement() {
     let svg = this.element.closest('svg');
-    svg.removeEventListener('mousemove', this.handleMouseMove);
-    svg.removeEventListener('mouseleave', this.handleMouseLeave);
-    svg.removeEventListener('mouseenter', this.handleMouseEnter);
+    svg.removeEventListener('mousemove', this._handleMouseMove);
+    svg.removeEventListener('mouseleave', this._handleMouseLeave);
+    svg.removeEventListener('mouseenter', this._handleMouseEnter);
   },
 
-  handleMouseMove(event) {
+  didReceiveAttrs() {
+    let [xNew, yNew] = this.get('position') || [];
+    let [xLast, yLast] = this._lastPosition || [];
+    let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
+
+    if ((xLast !== xNew || yLast !== yNew)) {
+      this._mouseMove({ offsetY: yNew + yOffset, offsetX: xNew + xOffset }, false);
+    }
+  },
+
+  _handleMouseMove(event) {
     run.throttle(this, '_mouseMove', event, 16);
   },
 
-  handleMouseLeave() {
+  _handleMouseLeave() {
     let showLatestWhenInactive = this.get('showLatestWhenInactive');
 
     if (showLatestWhenInactive) {
@@ -61,19 +104,8 @@ export default Component.extend({
     }
   },
 
-  handleMouseEnter() {
+  _handleMouseEnter() {
     this.set('isActive', true);
-  },
-
-  didReceiveAttrs() {
-    let isActive = this.get('isActive');
-    let [xNew, yNew] = this.get('position') || [];
-    let [xLast, yLast] = this._lastPosition || [];
-    let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
-
-    if ((xLast !== xNew || yLast !== yNew)) {
-      this._mouseMove({ isActive: true, offsetY: yNew + yOffset, offsetX: xNew + xOffset }, false);
-    }
   },
 
   _mouseMove(event, trigger = true) {
@@ -81,15 +113,20 @@ export default Component.extend({
     let { xScale, yScale, values } = this.getProperties('xScale', 'yScale', 'values');
     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
 
-    if (!xScale) {
-      this.setProperties({ isActive: true, x, y });
-      this.sendAction('change', [x, y]);
-    } else {
+    if (xScale) {
       let [[xPointer, yPointer], [xValue, ...yValues]] = closestPoint([x, y], [xOffset, yOffset], xScale, yScale, values);
 
       let [xLast, yLast] = this._lastPosition;
       if (xLast !== xPointer || yLast !== yPointer) {
-        this.setProperties({ isActive: true, x: xPointer, y: yPointer });
+        this.setProperties({
+          isActive: true,
+          cursor: {
+            x: xPointer,
+            y: yPointer,
+            xValue,
+            yValues
+          }
+        });
 
         if (trigger) {
           this.sendAction('_change', [xValue, yValues], [xPointer, yPointer]);
@@ -97,7 +134,6 @@ export default Component.extend({
 
         this._lastPosition = [xPointer, yPointer];
       }
-
     }
   }
 });
