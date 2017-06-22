@@ -77,11 +77,12 @@ export default Component.extend({
   },
 
   didReceiveAttrs() {
+    let hasMouse = this.get('hasMouse');
     let [xNew, yNew] = this.get('position') || [];
     let [xLast, yLast] = this._lastPosition || [];
     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset');
 
-    if ((xLast !== xNew || yLast !== yNew)) {
+    if ((xLast !== xNew || yLast !== yNew) && !hasMouse) {
       this._mouseMove({ offsetY: yNew + yOffset, offsetX: xNew + xOffset }, false);
     }
   },
@@ -97,15 +98,15 @@ export default Component.extend({
       let xScale = this.get('xScale');
       let values = this.get('values');
       let [x1] = values[values.length - 1];
-      this._mouseMove({ isActive: true, offsetY: 0, offsetX: xScale(x1) }, false);
-
+      this.setProperties({ isActive: true, hasMouse: false });
+      this._mouseMove({ offsetY: 0, offsetX: xScale(x1) }, true);
     } else {
-      this.set('isActive', false);
+      this.setProperties({ isActive: false, hasMouse: false });
     }
   },
 
   _handleMouseEnter() {
-    this.set('isActive', true);
+    this.setProperties({ isActive: true, hasMouse: true });
   },
 
   _mouseMove(event, trigger = true) {
