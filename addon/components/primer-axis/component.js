@@ -26,6 +26,8 @@ const AxisComponent = Component.extend({
 
   classNames: ['Primer-Axis'],
 
+  classNameBindings: ['orientation'],
+
   ticks: 10,
 
   /**
