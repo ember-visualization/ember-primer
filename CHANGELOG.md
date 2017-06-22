@@ -1,4 +1,7 @@
 # `ember-primer`
+## v0.1.5
+
+- Made `ember-measure` a proper dependency.
 
 ## v0.1.4
 
