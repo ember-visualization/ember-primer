@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Helper from 'ember-helper';
 import { assert } from '@ember/debug';
 
 /**
@@ -22,4 +22,4 @@ export function scale([data], hash = {}) {
   return data.map(([x, y]) => [xScale(x), yScale(y)]);
 }
 
-export default Ember.Helper.helper(scale);
+export default Helper.helper(scale);
