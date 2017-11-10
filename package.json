@@ -1,75 +1,67 @@
 {
-  "name": "ember-primer",
-  "version": "0.1.8",
-  "description": "Ember Primer is a collection of data visualization primitives.",
-  "keywords": [
-    "ember-addon"
-  ],
-  "license": "MIT",
-  "author": "",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "repository": "https://github.com/ember-visualization/ember-primer",
-  "scripts": {
-    "build": "ember build",
-    "start": "ember server",
-    "test": "ember try:each"
-  },
-  "dependencies": {
-    "babel-plugin-transform-regenerator": "^6.24.1",
-    "ember-cli-babel": "^6.4.1",
-    "ember-cli-htmlbars": "^2.0.1",
-    "ember-composable-helpers": "^2.0.1",
-    "ember-d3": "^0.4.0-beta.2",
-    "ember-measure": "^1.0.2"
-  },
-  "devDependencies": {
-    "autoprefixer": "^7.1.1",
-    "broccoli-asset-rev": "^2.4.5",
-    "ember-ajax": "^3.0.0",
-    "ember-cli": "~2.14.0-beta.1",
-    "ember-cli-changelog": "runspired/ember-cli-changelog",
-    "ember-cli-dependency-checker": "^1.3.0",
-    "ember-cli-eslint": "^3.0.0",
-    "ember-cli-htmlbars-inline-precompile": "^0.4.0",
-    "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-postcss": "^3.3.0",
-    "ember-cli-qunit": "^4.0.0",
-    "ember-cli-raw-event-test-helpers": "^0.1.0",
-    "ember-cli-release": "^1.0.0-beta.2",
-    "ember-cli-sass": "^7.0.0",
-    "ember-cli-shims": "^1.1.0",
-    "ember-cli-sri": "^2.1.0",
-    "ember-cli-uglify": "^1.2.0",
-    "ember-disable-prototype-extensions": "^1.1.0",
-    "ember-export-application-global": "^2.0.0",
-    "ember-fetch": "^2.1.0",
-    "ember-load-initializers": "^1.0.0",
-    "ember-math-helpers": "^2.1.0",
-    "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-native-dom-event-dispatcher": "^0.6.1",
-    "ember-native-dom-helpers": "^0.4.1",
-    "ember-resolver": "^4.0.0",
-    "ember-run-raf": "runspired/ember-run-raf",
-    "ember-source": "^2.13.2",
-    "ember-truth-helpers": "^1.3.0",
-    "eslint-plugin-ember-suave": "^1.0.0",
-    "express": "^4.8.5",
-    "glob": "^4.0.5",
-    "loader.js": "^4.2.3",
-    "morgan": "^1.3.2",
-    "postcss-font-family-system-ui": "^2.0.1"
-  },
-  "engines": {
-    "node": ">= 4"
-  },
-  "ember-addon": {
-    "configPath": "tests/dummy/config",
-    "after": [
-      "ember-d3",
-      "d3"
-    ]
-  }
+	"name": "ember-primer",
+	"version": "0.1.8",
+	"description": "Ember Primer is a collection of data visualization primitives.",
+	"keywords": [ "ember-addon" ],
+	"license": "MIT",
+	"author": "",
+	"directories": {
+		"doc": "doc",
+		"test": "tests"
+	},
+	"repository": "https://github.com/ember-visualization/ember-primer",
+	"scripts": {
+		"build": "ember build",
+		"start": "ember server",
+		"test": "ember try:each"
+	},
+	"dependencies": {
+		"ember-cli-babel": "^6.6.0",
+		"ember-cli-htmlbars": "^2.0.1",
+		"ember-composable-helpers": "^2.0.1",
+		"ember-d3": "^0.4.0-beta.2",
+		"ember-measure": "^1.0.2"
+	},
+	"devDependencies": {
+		"autoprefixer": "^7.1.1",
+		"broccoli-asset-rev": "^2.4.5",
+		"ember-ajax": "^3.0.0",
+		"ember-cli": "^2.16.2",
+		"ember-cli-changelog": "runspired/ember-cli-changelog",
+		"ember-cli-dependency-checker": "^1.3.0",
+		"ember-cli-htmlbars-inline-precompile": "^1.0.0",
+		"ember-cli-inject-live-reload": "^1.4.1",
+		"ember-cli-postcss": "^3.3.0",
+		"ember-cli-qunit": "^4.0.0",
+		"ember-cli-raw-event-test-helpers": "^0.1.0",
+		"ember-cli-release": "^1.0.0-beta.2",
+		"ember-cli-sass": "^7.0.0",
+		"ember-cli-shims": "^1.1.0",
+		"ember-cli-sri": "^2.1.0",
+		"ember-cli-uglify": "^2.0.0",
+		"ember-disable-prototype-extensions": "^1.1.2",
+		"ember-export-application-global": "^2.0.0",
+		"ember-fetch": "^2.1.0",
+		"ember-load-initializers": "^1.0.0",
+		"ember-math-helpers": "^2.1.0",
+		"ember-maybe-import-regenerator": "^0.1.6",
+		"ember-native-dom-event-dispatcher": "^0.6.1",
+		"ember-native-dom-helpers": "^0.4.1",
+		"ember-resolver": "^4.0.0",
+		"ember-run-raf": "runspired/ember-run-raf",
+		"ember-source": "~2.16.0",
+		"ember-truth-helpers": "^1.3.0",
+		"express": "^4.8.5",
+		"glob": "^4.0.5",
+		"loader.js": "^4.2.3",
+		"morgan": "^1.3.2",
+		"postcss-font-family-system-ui": "^2.0.1"
+	},
+	"engines": {
+		"node": ">= 8"
+	},
+	"ember-addon": {
+		"configPath": "tests/dummy/config",
+		"after": [ "ember-d3", "d3" ]
+	}
 }
