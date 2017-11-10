@@ -1,38 +1,38 @@
 @import "mixins";
 
 .shadow-elevation-2dp {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-              0 1px 5px 0 rgba(0, 0, 0, 0.12),
-              0 3px 1px -2px rgba(0, 0, 0, 0.2);
-};
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+		0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
 
 html {
-  padding: 0;
-  margin: 0;
+	padding: 0;
+	margin: 0;
 }
 
 body {
-  font-family: system-ui, sans-serif;
-  font-size: 16px;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+	font-family: system-ui, sans-serif;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
 }
 
 html * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-a, a:visited {
-  color: #512da8;
-  text-decoration: none;
+a,
+a:visited {
+	color: #512da8;
+	text-decoration: none;
 }
 
-chart .Primer-Plot {
-  width: 100%;
-  // height: 500px;
-  height: 100vh;
-  // height: 100%;
+.Primer-Plot {
+	width: 100%;
+	// height: 500px;
+	height: 100vh;
+	// height: 100%;
 }
 
 $primary-grey: rgba(black, 0.87);
@@ -42,234 +42,229 @@ $divider-grey: rgba(black, 0.12);
 $primary-color: #512da8;
 
 content.Container {
-  display: flex;
-  flex-flow: row nowrap;
-  min-height: 100vh;
+	display: flex;
+	flex-flow: row nowrap;
+	min-height: 100vh;
 
-  aside.left {
-    flex-basis: 100px;
-    flex-grow: 400px;
-    background: rgba(black, 0.05);
-    padding: 1.5rem;
-    flex: 1;
+	aside.left {
+		flex-basis: 100px;
+		flex-grow: 400px;
+		background: rgba(black, 0.05);
+		padding: 1.5rem;
+		flex: 1;
 
-    nav {
-      display: block;
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
+		nav {
+			display: block;
+			ul {
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
 
-        li {
-          a {
-            display: block;
-            padding: 0.5rem;
+				li {
+					a {
+						display: block;
+						padding: 0.5rem;
+					}
+				}
+			}
+		}
+	}
 
-          }
-        }
-      }
-    }
-  }
-
-  aside.right {
-    flex: 4;
-    flex-basis: 500px;
-  }
+	aside.right {
+		flex: 4;
+		flex-basis: 500px;
+	}
 }
 
 .SourceList {
-  h3 {
-    font-size: 1rem;
-    font-weight: 400;
-    margin-bottom: 1.5rem;
-    padding-left: 20px;
-    color: $secondary-grey;
-    user-select: none;
-    cursor: default;
-  }
+	h3 {
+		font-size: 1rem;
+		font-weight: 400;
+		margin-bottom: 1.5rem;
+		padding-left: 20px;
+		color: $secondary-grey;
+		user-select: none;
+		cursor: default;
+	}
 
-  ul {
-    padding-left: 0;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #ddd;
-    box-sizing: border-box;
-    list-style: none;
-    padding: 0 0 8px 0;
-    position: relative;
-  }
+	ul {
+		padding-left: 0;
+		margin-bottom: 2rem;
+		border-bottom: 1px solid #ddd;
+		box-sizing: border-box;
+		list-style: none;
+		padding: 0 0 8px 0;
+		position: relative;
+	}
 
-  li {
-    margin-bottom: 0.2rem;
-    padding: 4px;
+	li {
+		margin-bottom: 0.2rem;
+		padding: 4px;
 
-    i.material-icons {
-      display: inline-block;
-      float: left;
-      margin-top: 8px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 24px;
-      height: 24px;
-      width: 24px;
-      -webkit-user-drag: none;
-    }
+		i.material-icons {
+			display: inline-block;
+			float: left;
+			margin-top: 8px;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: 24px;
+			height: 24px;
+			width: 24px;
+			-webkit-user-drag: none;
+		}
 
-    &.clickable {
-      line-height: 40px;
-      padding: 4px 26px 4px 16px;
-      cursor: pointer;
-      display: block;
-      overflow: hidden;
-      position: relative;
-      text-overflow: ellipsis;
-      border-radius: 2px;
-      user-select: none;
-      white-space: nowrap;
+		&.clickable {
+			line-height: 40px;
+			padding: 4px 26px 4px 16px;
+			cursor: pointer;
+			display: block;
+			overflow: hidden;
+			position: relative;
+			text-overflow: ellipsis;
+			border-radius: 2px;
+			user-select: none;
+			white-space: nowrap;
 
-      i.material-icons {
-        margin-right: 24px;
-        color: $secondary-grey;
-      }
+			i.material-icons {
+				margin-right: 24px;
+				color: $secondary-grey;
+			}
 
-      &.active {
-        background-color: rgba(0,0,0,.05);
-        color: #212121;
-        font-weight: bold;
+			&.active {
+				background-color: rgba(0, 0, 0, .05);
+				color: #212121;
+				font-weight: bold;
 
-        i.material-icons {
-          color: $primary-grey;
-        }
+				i.material-icons {
+					color: $primary-grey;
+				}
 
-        &:hover {
-          background-color: rgba(0,0,0,.075);
-        }
-      }
+				&:hover {
+					background-color: rgba(0, 0, 0, .075);
+				}
+			}
 
-      &:hover {
-        background-color: rgba(0,0,0,.025);
-      }
-    }
+			&:hover {
+				background-color: rgba(0, 0, 0, .025);
+			}
+		}
 
-    a.active, &.active a {
-      color: $primary-color;
+		a.active,
+		&.active a {
+			color: $primary-color;
 
-      background-color: rgba(0,0,0,.05);
-      border-radius: 2px;
-      color: #212121;
-      font-weight: bold;
+			background-color: rgba(0, 0, 0, .05);
+			border-radius: 2px;
+			color: #212121;
+			font-weight: bold;
 
-      &:focus {
-        color: $primary-color;
-      }
-    }
+			&:focus {
+				color: $primary-color;
+			}
+		}
 
-    a:focus {
-      outline: 0;
-      color: lighten($primary-color, 5%);
+		a:focus {
+			outline: 0;
+			color: lighten($primary-color, 5%);
 
-      // &:before {
-      //   content: '';
-      //   margin-left: -12px;
-      //   @include triangle(10px, lighten($primary-color, 5%), right);
-      //   display: inline-block;
-      //   position: absolute;
-      //   pointer-events: none;
-      //   margin-top: 6px;
-      // }
-    }
-  }
+			// &:before {
+			//   content: '';
+			//   margin-left: -12px;
+			//   @include triangle(10px, lighten($primary-color, 5%), right);
+			//   display: inline-block;
+			//   position: absolute;
+			//   pointer-events: none;
+			//   margin-top: 6px;
+			// }
+		}
+	}
 
-  a {
-    padding: 0;
-    border: 0;
-    color: $secondary-grey;
-    line-height: 1.5rem;
+	a {
+		padding: 0;
+		border: 0;
+		color: $secondary-grey;
+		line-height: 1.5rem;
 
-    &:hover {
-      color: $primary-grey;
-    }
-  }
+		&:hover {
+			color: $primary-grey;
+		}
+	}
 }
 
 .TimeSeriesChart {
-  chart {
-    svg {
-      height: 260px;
-    }
-  }
+	chart {
+		svg {
+			height: 260px;
+		}
+	}
 }
 
 header {
-  padding: 1rem 1.5rem;
-  background: darken(white, 1%);
-  h2 {
-    line-height: 1.5rem;
-    margin: 0;
-    padding: 0;
-  }
+	padding: 1rem 1.5rem;
+	background: darken(white, 1%);
+	h2 {
+		line-height: 1.5rem;
+		margin: 0;
+		padding: 0;
+	}
 }
 
 .Card {
-  border-radius: 3px;
-  @extend .shadow-elevation-2dp;
-  margin: 0.5rem;
+	border-radius: 3px;
+	@extend .shadow-elevation-2dp;
+	margin: 0.5rem;
 
-  header {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-  }
+	header {
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+	}
 }
 
 .Primer-Axis {
-  g.tick {
-    text {
-      fill: $secondary-grey;
-    }
-  }
+	g.tick {
+		text {
+			fill: $secondary-grey;
+		}
+	}
 
-  .domain {
-    stroke: $secondary-grey;
-
-  }
+	.domain {
+		stroke: $secondary-grey;
+	}
 }
 
 .ResourceUsageChart {
-  height: 180px;
-  width: 100%;
-  padding: 0;
+	height: 180px;
+	width: 100%;
+	padding: 0;
 
-  .Primer-Chart {
-    width: 100%;
-    height: 100%;
+	.Primer-Chart {
+		width: 100%;
+		height: 100%;
 
-    svg {
-      width: 100%;
-    }
-  }
+		svg {
+			width: 100%;
+		}
+	}
 
-  .Primer-Label {
-    font-size: 1.2rem;
-    fill: $primary-grey;
-  }
+	.Primer-Label {
+		font-size: 1.2rem;
+		fill: $primary-grey;
+	}
 
-  svg .tick line {
-    stroke: $secondary-grey;
-    stroke-opacity: 0.12;
-    stroke-width: 0.5;
-  }
+	svg .tick line {
+		stroke: $secondary-grey;
+		stroke-opacity: 0.12;
+		stroke-width: 0.5;
+	}
 
-  svg .tick:last-of-type line {
-    stroke: #ff1744;
-    stroke-opacity: 1;
-  }
+	svg .tick:last-of-type line {
+		stroke: #ff1744;
+		stroke-opacity: 1;
+	}
 
-  svg .tick:nth-of-type(5) line {
-    stroke-dasharray: 5 2;
-    stroke: #FF9800;
-    stroke-opacity: 0.8;
-  }
-
+	svg .tick:nth-of-type(5) line {
+		stroke-dasharray: 5 2;
+		stroke: #ff9800;
+		stroke-opacity: 0.8;
+	}
 }
-
-
-
