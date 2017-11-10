@@ -1,0 +1,8 @@
+{{#primer-plot as |primer|}}
+  {{#primer.container xScale yScale margin="16 32" as |primer rect|}}
+    {{primer.line
+      stroke="#4285f4"
+      values=(p/scale temperatureReadings primer.xScale primer.yScale)
+    }}
+  {{/primer.container}}
+{{/primer-plot}}
