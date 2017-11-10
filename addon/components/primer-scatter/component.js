@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import layout from './template';
 import computed from 'ember-computed';
 import { scaleLinear } from 'd3-scale';
@@ -24,7 +24,7 @@ const symbols = {
   circle: symbolCircle
 };
 
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName: 'g',
 

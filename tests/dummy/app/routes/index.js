@@ -1,10 +1,10 @@
-import Ember from 'ember';
-const { run } = Ember;
+import Route from '@ember/routing/route';
+import { run } from '@ember/runloop';
 // import { symbols } from 'd3-shape';
 import { range } from 'd3-array';
 import { randomUniform } from 'd3-random';
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   signwaveGenerator() {
     let i = -1;

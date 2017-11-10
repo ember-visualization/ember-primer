@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Helper, isArray, assert } = Ember;
+import Helper from '@ember/component/helper';
+import { isArray } from '@ember/array';
+import { assert } from '@ember/debug';
 
 /**
  * @pairBy(params);

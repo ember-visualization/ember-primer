@@ -1,5 +1,10 @@
 import Component from 'ember-component';
-import { axisTop, axisRight, axisBottom, axisLeft } from 'd3-axis';
+import {
+  axisTop,
+  axisRight,
+  axisBottom,
+  axisLeft
+} from 'd3-axis';
 import { select } from 'd3-selection';
 import run from 'ember-runloop';
 

@@ -1,12 +1,11 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { run } from '@ember/runloop';
 import layout from './template';
 import Timer from 'ember-primer/utils/timer';
 import { easePolyOut } from 'd3-ease';
 import { victoryInterpolator } from 'ember-primer/utils/interpolation';
 
-const { run } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
   tagName: '',
 

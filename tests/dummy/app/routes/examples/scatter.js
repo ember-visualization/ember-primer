@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import { range } from 'd3-array';
 import { randomUniform } from 'd3-random';
 const { abs } = Math;
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   setupController(controller) {
     controller.setProperties({ scatterData: this.getScatterData() });
