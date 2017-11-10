@@ -1,13 +1,15 @@
-# ember-primer
+# `@primer`
 
 Ember Primer is a collection of data visualization primitives (components) which
 can be composed together to construct ambitious data visualizations and interactive
 presentations.
 
+> **Ember Primer** is built and maintained by [Flood IO](https://flood.io?utm_source=github), an easy to use load testing platform for any scale of testing.
+
 #### Primer has 3 design goals:
 
-1. Primer is built on D3 (using `ember-d3` with D3.js 4.x), it should enable 
-developers to efficiently construct presentations without concerning 
+1. Primer is built on D3 (using `ember-d3` with D3.js 4.x), it should enable
+developers to efficiently construct presentations without concerning
 themselves with `insert/update/merge` semantics of D3.js,
 2. Presentation and data should be separate concerns, allowing for data processing
 to be done at a higher level and passed down to the presentation layer,
@@ -44,7 +46,7 @@ requirements of:
 
 ## Conventions
 
-In cartesion based graphs, all data points are expressed in the order of `x,y`. 
+In cartesion based graphs, all data points are expressed in the order of `x,y`.
 This means that if you have an array of pairs, the values should be `[[x,y], [x,y], ...]`.
 
 Additionally, unless it is data, everything is named with axis prefix then name, for
@@ -57,7 +59,7 @@ TBA
 
 # Helpers
 
-Most helpers exposed in this addon are prefixed with `p/`, for example: `p/sample`. 
+Most helpers exposed in this addon are prefixed with `p/`, for example: `p/sample`.
 This is to avoid name clashes with other addons and helpers you may already be using.
 
 [Helper Documentation](/docs/helpers.md)
