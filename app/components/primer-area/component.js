@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/components/primer-area/component';
+export { default } from 'ember-primer/components/primer-area/component'

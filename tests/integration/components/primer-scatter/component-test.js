@@ -1,25 +1,34 @@
-import { moduleForComponent, test } from 'ember-qunit';
-import hbs from 'htmlbars-inline-precompile';
+import { moduleForComponent, test } from 'ember-qunit'
+import hbs from 'htmlbars-inline-precompile'
 
 moduleForComponent('primer-scatter', 'Integration | Component | primer scatter', {
-  integration: true
-});
+  integration: true,
+})
 
 test('it renders', function(assert) {
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{primer-scatter}}`);
+  this.render(hbs`{{primer-scatter}}`)
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    '',
+  )
 
   // Template block usage:
   this.render(hbs`
     {{#primer-scatter}}
       template block text
     {{/primer-scatter}}
-  `);
+  `)
 
-  assert.equal(this.$().text().trim(), 'template block text');
-});
+  assert.equal(
+    this.$()
+      .text()
+      .trim(),
+    'template block text',
+  )
+})

@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/utils/scale-helper-options';
+export { default } from 'ember-primer/utils/scale-helper-options'

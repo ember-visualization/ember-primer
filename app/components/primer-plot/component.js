@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/components/primer-plot/component';
+export { default } from 'ember-primer/components/primer-plot/component'

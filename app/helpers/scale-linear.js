@@ -1,1 +1,1 @@
-export { default, scaleLinear } from 'ember-primer/helpers/scale-linear';
+export { default, scaleLinear } from 'ember-primer/helpers/scale-linear'

@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/components/primer-cursor/component';
+export { default } from 'ember-primer/components/primer-cursor/component'

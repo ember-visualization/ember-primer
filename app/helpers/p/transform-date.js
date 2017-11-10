@@ -1,1 +1,1 @@
-export { default, pTransformDate } from 'ember-primer/helpers/p/transform-date';
+export { default, pTransformDate } from 'ember-primer/helpers/p/transform-date'

@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/components/primer-group/component';
+export { default } from 'ember-primer/components/primer-group/component'

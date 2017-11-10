@@ -1,1 +1,1 @@
-export { default, scaleTime } from 'ember-primer/helpers/scale/time';
+export { default, scaleTime } from 'ember-primer/helpers/scale/time'

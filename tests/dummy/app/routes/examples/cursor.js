@@ -1,25 +1,23 @@
-import Route from '@ember/routing/route';
+import Route from '@ember/routing/route'
 
 export default Route.extend({
-
   model() {
-    let length = 100;
-    let i = -1;
-    let width = 20;
+    let length = 100
+    let i = -1
+    let width = 20
 
-    let values = [];
+    let values = []
 
     while (++i < length) {
-      let j = -1;
+      let j = -1
       while (++j < width) {
-        values.push([j, Math.sin(2 * Math.PI * j)]);
+        values.push([j, Math.sin(2 * Math.PI * j)])
       }
     }
-    return values;
+    return values
   },
 
   setupController(controller, waves) {
-    controller.setProperties({ waves });
-  }
-
-});
+    controller.setProperties({ waves })
+  },
+})

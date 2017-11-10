@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/utils/find-closest-cursor-points';
+export { default } from 'ember-primer/utils/find-closest-cursor-points'

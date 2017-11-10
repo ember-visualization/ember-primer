@@ -1,5 +1,5 @@
-import Component from '@ember/component';
-import layout from './template';
+import Component from '@ember/component'
+import layout from './template'
 
 export default Component.extend({
   layout,
@@ -10,7 +10,7 @@ export default Component.extend({
 
   actions: {
     cursorPositionChanged([xValue, yValue], [xCursor, yCursor]) {
-      this.sendAction('global-cursor-change', [xCursor, yCursor]);
-    }
-  }
-});
+      this.sendAction('global-cursor-change', [xCursor, yCursor])
+    },
+  },
+})

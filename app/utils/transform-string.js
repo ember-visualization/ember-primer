@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/utils/transform-string';
+export { default } from 'ember-primer/utils/transform-string'

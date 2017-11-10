@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/utils/box-expression';
+export { default } from 'ember-primer/utils/box-expression'

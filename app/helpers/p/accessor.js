@@ -1,1 +1,1 @@
-export { default, pAccessor } from 'ember-primer/helpers/p/accessor';
+export { default, pAccessor } from 'ember-primer/helpers/p/accessor'

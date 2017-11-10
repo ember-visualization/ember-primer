@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/utils/interpolation';
+export { default } from 'ember-primer/utils/interpolation'

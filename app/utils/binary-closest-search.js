@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/utils/binary-closest-search';
+export { default } from 'ember-primer/utils/binary-closest-search'

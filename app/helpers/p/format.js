@@ -1,1 +1,1 @@
-export { default, primerFormat } from 'ember-primer/helpers/p/format';
+export { default, primerFormat } from 'ember-primer/helpers/p/format'

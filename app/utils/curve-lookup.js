@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/utils/curve-lookup';
+export { default } from 'ember-primer/utils/curve-lookup'

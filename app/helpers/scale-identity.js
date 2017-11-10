@@ -1,1 +1,1 @@
-export { default, scaleIdentity } from 'ember-primer/helpers/scale-identity';
+export { default, scaleIdentity } from 'ember-primer/helpers/scale-identity'
