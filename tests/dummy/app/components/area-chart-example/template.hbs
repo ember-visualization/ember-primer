@@ -19,10 +19,10 @@
     {{!-- {{primer.line values=(scale values xScale=primer.xScale yScale=primer.yScale)}} --}}
     {{primer.area values=(scale (p/sample values threshold=rect.width) xScale=primer.xScale yScale=primer.yScale)}}
 
-    {{#primer.cursor change=(action "cursorPositionChanged") debugKey="area-chart" values=values as |x y|}}
-      <line x1={{x}} x2={{x}} y1="0" y2={{y}} stroke="#66bb6a"></line>
-      <circle cx={{x}} cy={{y}} fill='#66bb6a' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
-      {{primer-label text=(p/format tooltipValue format="$.2f") title="Stock Price" x=x}}
+    {{#primer.cursor change=(action "cursorPositionChanged") debugKey="area-chart" values=values as |cursor|}}
+      <line x1={{cursor.x}} x2={{cursor.x}} y1="0" y2={{cursor.y}} stroke="#66bb6a"></line>
+      <circle cx={{cursor.x}} cy={{cursor.y}} fill='#66bb6a' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
+      {{primer-label text=(p/format tooltipValue format="$.2f") title="Stock Price" x=cursor.x}}
     {{/primer.cursor}}
 
     {{primer.axis "bottom" primer.xScale offsetY=4}}
