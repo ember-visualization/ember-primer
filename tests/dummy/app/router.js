@@ -13,6 +13,10 @@ Router.map(function() {
     this.route('scatter')
     this.route('line')
     this.route('interactive-area')
+
+    this.route('primitives', function() {
+      this.route('candle');
+    });
   })
 })
 
