@@ -2533,7 +2533,7 @@ ember-ajax@^3.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
-ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6:
+ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7:
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.4.tgz#5ce4f46b08ed6f6d21e878619fb689719d6e8e13"
   dependencies:
@@ -2591,12 +2591,13 @@ ember-cli-changelog@runspired/ember-cli-changelog:
   resolved "https://codeload.github.com/runspired/ember-cli-changelog/tar.gz/cc970d7a72ceabf6b4521198af22520532645754"
   dependencies:
     chalk "^1.1.1"
-    ember-cli-babel "^5.1.6"
-    github "^2.2.0"
+    ember-cli-babel "^5.1.5"
+    github "^0.2.4"
+    inquirer "^0.11.0"
     jsonfile "^2.2.3"
-    moment "^2.13.0"
     multiline "^1.0.2"
     object-assign "^4.0.1"
+    prompt "^0.2.14"
     rsvp "^3.1.0"
     valid-url "^1.0.9"
 
@@ -2918,6 +2919,12 @@ ember-composable-helpers@^2.0.1:
   dependencies:
     broccoli-funnel "^1.0.1"
     ember-cli-babel "^6.1.0"
+
+ember-computed-style@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-computed-style/-/ember-computed-style-0.2.0.tgz#6ceb2f1f10f9555fa5b5092f5668dde2c9df5440"
+  dependencies:
+    ember-cli-babel "^5.1.7"
 
 ember-d3@^0.4.0-beta.2:
   version "0.4.0-beta.2"
