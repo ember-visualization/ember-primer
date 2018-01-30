@@ -1,5 +1,9 @@
 # `ember-primer`
 
+## v0.1.10 (January 30th, 2018)
+
+* Updates ember-d3
+
 ## v0.1.9 (January 29th, 2018)
 
 * Internal changes
