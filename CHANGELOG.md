@@ -2,6 +2,10 @@
 
 ## v0.1.11 (January 31st, 2018)
 
+* Updates ember-d3 to 0.4.1
+
+## v0.1.12 (February 1st, 2018)
+
 * Updates ember-d3
 
 ## v0.1.10 (January 30th, 2018)
