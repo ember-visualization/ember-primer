@@ -2994,9 +2994,9 @@ ember-computed-style@^0.2.0:
   dependencies:
     ember-cli-babel "^5.1.7"
 
-ember-d3@0.4.0-beta.6:
-  version "0.4.0-beta.6"
-  resolved "https://registry.yarnpkg.com/ember-d3/-/ember-d3-0.4.0-beta.6.tgz#3dae1b0a8c3426844d476bf307983013891333cb"
+ember-d3@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/ember-d3/-/ember-d3-0.4.1.tgz#1e6af00de2638e76f191e5060bc8137f0b53e5c3"
   dependencies:
     broccoli-funnel "^2.0.0"
     broccoli-merge-trees "^1.1.2"
