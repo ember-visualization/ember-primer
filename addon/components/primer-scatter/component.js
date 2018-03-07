@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import layout from './template';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 import { scaleLinear } from 'd3-scale';
 import { extent } from 'd3-array';
 import { symbol,

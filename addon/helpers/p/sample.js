@@ -1,4 +1,4 @@
-import Helper from 'ember-helper';
+import Helper from '@ember/component/helper';
 import largestTriangeThreeBucketsSample from 'ember-primer/utils/largest-triangle-three-bucket-sample';
 
 export function pSample([data], hash) {

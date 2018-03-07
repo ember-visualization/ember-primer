@@ -1,4 +1,4 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import {
   axisTop,
   axisRight,
@@ -6,7 +6,7 @@ import {
   axisLeft
 } from 'd3-axis';
 import { select } from 'd3-selection';
-import run from 'ember-runloop';
+import { run } from '@ember/runloop';
 
 const AXIS_MAP = {
   top: axisTop,

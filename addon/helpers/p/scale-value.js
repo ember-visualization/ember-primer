@@ -1,4 +1,4 @@
-import Helper from 'ember-helper';
+import Helper from '@ember/component/helper';
 
 export function scaleValue([scale, valueToScale]) {
   return scale(valueToScale);

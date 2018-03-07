@@ -1,4 +1,4 @@
-import Helper from 'ember-helper';
+import Helper from '@ember/component/helper';
 import { extent, ascending } from 'd3-array';
 
 export function helper([array], hash = {}) {

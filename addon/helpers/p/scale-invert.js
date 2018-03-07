@@ -1,4 +1,4 @@
-import Helper from 'ember-helper';
+import Helper from '@ember/component/helper';
 
 export function pScaleInvert([scale, valueToInvert]) {
   return scale.invert(valueToInvert);

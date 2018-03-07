@@ -1,6 +1,6 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import layout from './template';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 import { line } from 'd3-shape';
 import curveLookup from 'ember-primer/utils/curve-lookup';
 

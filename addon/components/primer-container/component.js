@@ -1,6 +1,6 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import layout from './template';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 import box from 'ember-primer/utils/box-expression';
 const { keys } = Object;
 const Container =  Component.extend({

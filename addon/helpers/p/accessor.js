@@ -1,4 +1,4 @@
-import Helper from 'ember-helper';
+import Helper from '@ember/component/helper';
 
 export function pAccessor([key, transform]) {
   let match = key.match(/\$(\d+)/);

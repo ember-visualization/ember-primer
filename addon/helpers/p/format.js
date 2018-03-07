@@ -1,4 +1,4 @@
-import Helper from 'ember-helper';
+import Helper from '@ember/component/helper';
 import { format as d3Format } from 'd3-format';
 
 export function format([value], hash) {

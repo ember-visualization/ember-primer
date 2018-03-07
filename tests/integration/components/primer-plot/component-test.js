@@ -1,20 +1,13 @@
 import { moduleForComponent, test } from 'ember-qunit'
 import hbs from 'htmlbars-inline-precompile'
-import {
-  find,
-  findWithAssert,
-  click,
-  triggerEvent
-} from 'ember-native-dom-helpers'
+import { find, findWithAssert } from 'ember-native-dom-helpers'
 
 moduleForComponent('primer-plot', 'Integration | Component | primer plot', {
   integration: true,
 })
 
-test('it renders the SVG tag', function(assert) {
-  const done = assert.async()
-
-  this.render(hbs`
+test('it renders the SVG tag', async function(assert) {
+  await this.render(hbs`
     <div style="width: 100px; height: 100px; display: block; position:relative; transform:scale(1);">
       {{#primer-plot as |primer|}}
       {{/primer-plot}}
@@ -26,8 +19,6 @@ test('it renders the SVG tag', function(assert) {
   assert.equal(find('svg').getAttribute('aria-labelledby'), 'title desc', 'svg aria-labelledby')
   assert.equal(find('svg').getAttribute('width'), '640', 'svg has width')
   assert.equal(find('svg').getAttribute('height'), '250', 'svg has height')
-
-  // setTimeout(() => done(), 20000);
 })
 
 test('it disables auto size if width is specified', function(assert) {
@@ -50,8 +41,6 @@ test('it renders the container', async function(assert) {
       {{/primer-plot}}
     </div>
   `)
-
-  let text = await find('text').textContent
 
   assert.equal(await find('svg').getAttribute('width'), '100', 'svg has width')
   assert.equal(await find('svg').getAttribute('height'), '100', 'svg has height')

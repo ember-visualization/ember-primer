@@ -1,6 +1,6 @@
 import { scaleLinear as linear } from 'd3-scale';
 import scaleHelperOptions from '../utils/scale-helper-options';
-import Helper from 'ember-helper';
+import Helper from '@ember/component/helper';
 
 export function scaleLinear([domain, range], hash) {
   let scale = linear();

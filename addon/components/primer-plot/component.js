@@ -1,8 +1,8 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 // import ResizeableContainer from 'ember-primer/mixins/resizeable-container';
 import WithContentRect from 'ember-measure/with-content-rect';
 import layout from './template';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 
 export default Component.extend(WithContentRect, {
   layout,

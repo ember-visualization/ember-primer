@@ -1,6 +1,6 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import layout from './template';
-import computed from 'ember-computed';
+import { computed } from '@ember/object';
 import transformString from 'ember-primer/utils/transform-string';
 
 /**

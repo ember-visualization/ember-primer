@@ -1,4 +1,4 @@
-import Helper from 'ember-helper';
+import Helper from '@ember/component/helper';
 
 export function pMap([values, accessor]) {
   return values.map(accessor);
