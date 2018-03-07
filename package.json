@@ -2,9 +2,7 @@
   "name": "ember-primer",
   "version": "0.1.12",
   "description": "Ember Primer is a collection of data visualization primitives.",
-  "keywords": [
-    "ember-addon"
-  ],
+  "keywords": ["ember-addon"],
   "license": "MIT",
   "author": "",
   "directories": {
@@ -15,31 +13,34 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
+    "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "test": "ember try:each"
   },
   "dependencies": {
     "d3": "^4.13.0",
-    "ember-d3": "^0.4.1",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
     "ember-composable-helpers": "^2.0.1",
+    "ember-d3": "^0.4.1",
     "ember-measure": "^1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
-    "ember-cli": "^2.16.2",
+    "ember-cli": "~3.0.0",
+    "ember-cli-dependency-checker": "^2.0.0",
+    "ember-cli-eslint": "^4.2.1",
+    "ember-cli-htmlbars": "^2.0.1",
     "ember-cli-changelog": "runspired/ember-cli-changelog",
-    "ember-cli-dependency-checker": "^1.3.0",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-postcss": "^3.3.0",
-    "ember-cli-qunit": "^4.0.0",
     "ember-cli-raw-event-test-helpers": "^0.1.0",
     "ember-cli-release": "^1.0.0-beta.2",
     "ember-cli-sass": "^7.0.0",
-    "ember-cli-shims": "^1.1.0",
+    "ember-cli-qunit": "^4.1.1",
+    "ember-cli-shims": "^1.2.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^2.0.0",
     "ember-computed-style": "^0.2.0",
@@ -49,15 +50,18 @@
     "ember-load-initializers": "^1.0.0",
     "ember-math-helpers": "^2.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-native-dom-event-dispatcher": "^0.6.1",
     "ember-native-dom-helpers": "^0.4.1",
     "ember-resolver": "^4.0.0",
-    "ember-run-raf": "runspired/ember-run-raf",
-    "ember-source": "~2.16.0",
+    "ember-source": "~3.0.0",
+    "ember-source-channel-url": "^1.0.1",
+    "ember-try": "^0.2.23",
+    "ember-welcome-page": "^3.0.0",
+    "eslint-plugin-ember": "^5.0.0",
+    "eslint-plugin-node": "^5.2.1",
+    "loader.js": "^4.2.3",
     "ember-truth-helpers": "^1.3.0",
     "express": "^4.8.5",
     "glob": "^4.0.5",
-    "loader.js": "^4.2.3",
     "morgan": "^1.3.2",
     "postcss-font-family-system-ui": "^2.0.1"
   },
@@ -66,9 +70,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "after": [
-      "ember-d3",
-      "d3"
-    ]
+    "after": ["ember-d3", "d3"]
   }
 }
