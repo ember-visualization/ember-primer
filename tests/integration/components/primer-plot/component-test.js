@@ -1,6 +1,11 @@
 import { moduleForComponent, test } from 'ember-qunit'
 import hbs from 'htmlbars-inline-precompile'
-import { find, findWithAssert, click, triggerEvent } from 'ember-native-dom-helpers'
+import {
+  find,
+  findWithAssert,
+  click,
+  triggerEvent
+} from 'ember-native-dom-helpers'
 
 moduleForComponent('primer-plot', 'Integration | Component | primer plot', {
   integration: true,

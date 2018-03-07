@@ -1,6 +1,4 @@
 import Route from '@ember/routing/route'
-import { run } from '@ember/runloop'
-// import { symbols } from 'd3-shape';
 import { range } from 'd3-array'
 import { randomUniform } from 'd3-random'
 
