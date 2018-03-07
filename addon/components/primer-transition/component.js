@@ -139,9 +139,6 @@ export default Component.extend({
     let { ease } = this
     let result = interpolator(ease(step))
 
-    // console.log(step, elapsed);
-    // console.log(result[0]);
-    // this.set('newValues', result);
-    run.sync(this, this.set('newValues', result.slice()))
+    run(this, () => this.set('newValues', result.slice()))
   },
 })
