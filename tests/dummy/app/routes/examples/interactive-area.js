@@ -1,4 +1,4 @@
-import Route from 'ember-route'
+import Route from '@ember/routing/route';
 import fetch from 'fetch'
 import { extent } from 'd3-array'
 

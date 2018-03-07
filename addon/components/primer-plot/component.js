@@ -1,14 +1,20 @@
-import Component from '@ember/component';
+import Component from '@ember/component'
 // import ResizeableContainer from 'ember-primer/mixins/resizeable-container';
-import WithContentRect from 'ember-measure/with-content-rect';
-import layout from './template';
-import { computed } from '@ember/object';
+import WithContentRect from 'ember-measure/with-content-rect'
+import layout from './template'
+import { computed } from '@ember/object'
 
 export default Component.extend(WithContentRect, {
   layout,
   tagName: 'div',
 
   classNames: ['Primer-Chart'],
+
+  init() {
+    this._super(...arguments)
+    this.cursorPosition = [0, 0]
+    this.types = ['client']
+  },
 
   // attributeBindings: ['width', 'height', 'viewBox', 'ariaLabelledBy:aria-labelledby', 'role'],
 
@@ -19,29 +25,28 @@ export default Component.extend(WithContentRect, {
   ariaLabelledBy: 'title desc',
   role: 'img',
 
-  cursorPosition: [0, 0],
-
   // TODO: Rename types to rectTypes
-  types: ['client'],
+  types: null,
 
   width: computed.reads('contentRect.client.width'),
   height: computed.reads('contentRect.client.height'),
 
   viewBox: computed('width', 'height', {
     get() {
-      let { width, height } = this.getProperties('width', 'height');
+      let { width, height } = this.getProperties('width', 'height')
 
       if (!width || !height) {
-        return undefined;
+        return undefined
       }
 
-      return [0, 0, width, height].join(' ');
-    }
+      return [0, 0, width, height].join(' ')
+    },
   }),
 
   actions: {
     updateCursorPosition([xValue, yValue], [xCursor, yCursor]) {
-      this.sendAction('cursor-moved', [xValue, yValue], [xCursor, yCursor]);
-    }
-  }
-});
+      let action = this.get('cursor-moved')
+      if (action) action([xValue, yValue], [xCursor, yCursor])
+    },
+  },
+})

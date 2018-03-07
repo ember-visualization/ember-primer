@@ -6,11 +6,15 @@ export default Component.extend({
 
   tagName: 'chart',
 
-  cursorPosition: [0, 0],
+  init() {
+    this._super(...arguments)
+    this.cursorPosition = [0, 0]
+  },
 
   actions: {
-    cursorPositionChanged([xValue, yValue], [xCursor, yCursor]) {
-      this.sendAction('global-cursor-change', [xCursor, yCursor])
+    cursorPositionChanged(_ /*[xValue, yValue]*/, [xCursor, yCursor]) {
+      let action = this.get('global-cursor-change')
+      if (action) action([xCursor, yCursor])
     },
   },
 })

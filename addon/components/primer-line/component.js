@@ -1,19 +1,24 @@
-import Component from '@ember/component';
-import layout from './template';
-import { computed } from '@ember/object';
-import { line } from 'd3-shape';
-import curveLookup from 'ember-primer/utils/curve-lookup';
+import Component from '@ember/component'
+import layout from './template'
+import { computed } from '@ember/object'
+import { line } from 'd3-shape'
+import curveLookup from 'ember-primer/utils/curve-lookup'
 
 const LineComponent = Component.extend({
   tagName: 'g',
   layout,
+
+  init() {
+    this._super(...arguments)
+    this.values = []
+  },
 
   /**
    * Normalized values to render
    * @public
    * @type {Array<Array[2]>}
    */
-  values: [],
+  values: null,
 
   /**
    * Line interpolation
@@ -86,9 +91,9 @@ const LineComponent = Component.extend({
    */
   transform: computed('x', 'y', {
     get() {
-      let { x, y } = this.getProperties('x', 'y');
-      return `translate(${x},${y})`;
-    }
+      let { x, y } = this.getProperties('x', 'y')
+      return `translate(${x},${y})`
+    },
   }),
 
   /**
@@ -99,18 +104,18 @@ const LineComponent = Component.extend({
    */
   pathData: computed('values.[]', 'interpolation', {
     get() {
-      let { values, interpolation } = this.getProperties('values', 'interpolation');
+      let { values, interpolation } = this.getProperties('values', 'interpolation')
 
       let lineFn = line()
-        .x((d) => d[0])
-        .y((d) => d[1]);
+        .x(d => d[0])
+        .y(d => d[1])
 
       if (interpolation) {
-        lineFn.curve(curveLookup(interpolation));
+        lineFn.curve(curveLookup(interpolation))
       }
 
-      return lineFn(values);
-    }
+      return lineFn(values)
+    },
   }),
 
   /**
@@ -122,13 +127,14 @@ const LineComponent = Component.extend({
    * @action
    */
   mouseMove(event) {
-    let { offsetX, offsetY } = event;
-    this.sendAction('mouse-move', [offsetX, offsetY]);
-  }
-});
+    let { offsetX, offsetY } = event
+    let action = this.get('mouse-move')
+    if (action) action([offsetX, offsetY])
+  },
+})
 
 LineComponent.reopenClass({
-  positionalParams: ['values']
-});
+  positionalParams: ['values'],
+})
 
-export default LineComponent;
+export default LineComponent

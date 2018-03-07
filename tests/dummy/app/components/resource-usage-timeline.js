@@ -1,7 +1,7 @@
-import Component from 'ember-component'
+import Component from '@ember/component'
 import { scaleUtc, scaleLinear } from 'd3-scale'
 import { extent } from 'd3-array'
-import computed from 'ember-computed'
+import { computed } from '@ember/object'
 import layout from '../templates/components/resource-usage-timeline'
 
 const { max, min } = Math
@@ -10,15 +10,18 @@ export default Component.extend({
   layout,
   classNames: ['ResourceUsageChart'],
 
-  values: [],
+  init() {
+    this._super(...arguments)
+
+    this.values = []
+    this.cursorPosition = [0, 0]
+  },
 
   metric: null,
 
   startedAt: null,
 
   stoppedAt: null,
-
-  cursorPosition: [0, 0],
 
   x: d => d[0],
   y: d => d[1],
@@ -92,9 +95,10 @@ export default Component.extend({
   }),
 
   actions: {
-    updateCursorPosition([x, y], [xCursor, yCursor]) {
+    updateCursorPosition(_, [xCursor, yCursor]) {
       this.set('cursorPosition', [xCursor, yCursor])
-      this.sendAction('cursor-moved', [xCursor, yCursor])
+      let action = this.get('cursor-moved')
+      if (action) action([xCursor, yCursor])
     },
   },
 })

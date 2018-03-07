@@ -1,6 +1,6 @@
-import Component from 'ember-component'
+import Component from '@ember/component'
 import layout from './template'
-import computed from 'ember-computed'
+import { computed } from '@ember/object'
 const { keys, entries } = Object
 
 import { extent, ascending } from 'd3-array'
@@ -11,7 +11,11 @@ export default Component.extend({
 
   tagName: 'chart',
 
-  cursorPosition: [0, 0],
+  init() {
+    this._super(...arguments)
+    this.cursorPosition = [0, 0]
+    this.stockPrices = []
+  },
 
   /**
    * Input data
@@ -19,7 +23,7 @@ export default Component.extend({
    * @readOnly
    * @type {Array}
    */
-  stockPrices: [],
+  stockPrices: null,
 
   /**
    * Returns an array containing the values for each series and a base timestamp.
@@ -113,8 +117,9 @@ export default Component.extend({
   }),
 
   actions: {
-    cursorPositionChanged([xValue, yValue], [xCursor, yCursor]) {
-      this.sendAction('global-cursor-change', [xCursor, yCursor])
+    cursorPositionChanged(_ /*[xValue, yValue]*/, [xCursor, yCursor]) {
+      let action = this.get('global-cursor-change')
+      if (action) action([xCursor, yCursor])
     },
   },
 })

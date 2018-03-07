@@ -1,18 +1,15 @@
-import Component from '@ember/component';
-import layout from './template';
-import { computed } from '@ember/object';
-import { scaleLinear } from 'd3-scale';
-import { extent } from 'd3-array';
-import { symbol,
+import Component from '@ember/component'
+import layout from './template'
+import {
+  symbol,
   symbolWye,
   symbolTriangle,
   symbolStar,
   symbolSquare,
   symbolDiamond,
   symbolCross,
-  symbolCircle
-
-} from 'd3-shape';
+  symbolCircle,
+} from 'd3-shape'
 
 const symbols = {
   wye: symbolWye,
@@ -21,33 +18,39 @@ const symbols = {
   square: symbolSquare,
   diamond: symbolDiamond,
   cross: symbolCross,
-  circle: symbolCircle
-};
+  circle: symbolCircle,
+}
 
 export default Component.extend({
   layout,
   tagName: 'g',
 
-  values: [],
+  init() {
+    this._super(...arguments)
+    this.values = []
+    this.newValues = []
+  },
 
-  newValues: [],
+  values: null,
+
+  newValues: null,
 
   xScale: null,
 
   yScale: null,
 
   didReceiveAttrs() {
-    let values = this.get('values').filter((d) => d);
-    let { xScale, yScale } = this.getProperties('xScale', 'yScale');
+    let values = this.get('values').filter(d => d)
+    let { xScale, yScale } = this.getProperties('xScale', 'yScale')
 
-    let newValues = values.slice().map((d) => {
-      let sym = symbol();
-      sym.size(d.size * 4);
-      sym.type(symbols[d.symbol]);
+    let newValues = values.slice().map(d => {
+      let sym = symbol()
+      sym.size(d.size * 4)
+      sym.type(symbols[d.symbol])
 
-      return Object.assign({}, d, { symbol: sym(), x: xScale(d.x), y: yScale(d.y) });
-    });
+      return Object.assign({}, d, { symbol: sym(), x: xScale(d.x), y: yScale(d.y) })
+    })
 
-    this.set('newValues', newValues);
-  }
-});
+    this.set('newValues', newValues)
+  },
+})

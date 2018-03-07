@@ -17,11 +17,24 @@ export default Component.extend({
 
   classNames: ['Primer-Cursor'],
 
+  init() {
+    this._super(...arguments)
+    this.values = []
+    this.cursor = {
+      x: 0,
+      y: 0,
+      xValues: 0,
+      yValues: [0],
+    }
+    this._lastPosition = []
+    this.position = []
+  },
+
   xScale: null,
 
   yScale: null,
 
-  values: [],
+  values: null,
 
   /**
    * Represents the cursor object, which is part of the public API.
@@ -29,12 +42,7 @@ export default Component.extend({
    * @public
    * @type {Object}
    */
-  cursor: {
-    x: 0,
-    y: 0,
-    xValues: 0,
-    yValues: [0],
-  },
+  cursor: null,
 
   /**
    * Indicates whether the cursor is visible on the chart
@@ -50,14 +58,14 @@ export default Component.extend({
    */
   hasMouse: false,
 
-  _lastPosition: [],
+  _lastPosition: null,
 
   /**
    * Public API for setting the current position
    * @public
    * @type {Array}
    */
-  position: [],
+  position: null,
 
   /**
    * Indicates whether to display the latest result when the mouse isn't in the
@@ -157,7 +165,8 @@ export default Component.extend({
         })
 
         if (trigger) {
-          this.sendAction('_change', [xValue, yValues], [xPointer, yPointer])
+          let action = this.get('_change')
+          if (action) action([xValue, yValues], [xPointer, yPointer])
         }
 
         this._lastPosition = [xPointer, yPointer]
