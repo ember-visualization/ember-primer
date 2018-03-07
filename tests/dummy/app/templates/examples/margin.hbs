@@ -1,16 +1,17 @@
 {{#primer-plot as |primer|}}
-  {{#primer.container (scale-identity) (scale-identity) margin="56" padding="0" as |primer rect|}}
+  {{#primer.container (scale-identity ) (scale-identity ) margin="56" padding="0" as |primer rect|}}
     {{!-- <rect stroke="black" stroke-width="1" fill="none" width={{rect.innerWidth}}a height={{rect.innerHeight}}></rect> --}}
-
     <rect stroke="none" fill="lightGrey" width={{rect.width}} height={{rect.height}}></rect>
-
     <g transform="translate({{div rect.width 2}},{{div rect.height 2}})">
-      <text text-anchor="middle">{{rect.width}}px x {{rect.height}}px</text>
+      <text text-anchor="middle">
+        {{rect.width}}
+        px x
+        {{rect.height}}
+        px
+      </text>
     </g>
-
     {{primer.axis "bottom" primer.xScale offsetY=8 ticks=20}}
     {{primer.axis "right" primer.yScale offsetX=8}}
     {{primer.axis "left" primer.yScale offsetX=-8}}
     {{primer.axis "top" primer.xScale offsetY=-8}}
-  {{/primer.container}}
-{{/primer-plot}}
+  {{/primer.container}}{{/primer-plot}}

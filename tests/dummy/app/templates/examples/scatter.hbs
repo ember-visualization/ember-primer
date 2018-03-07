@@ -3,13 +3,11 @@
     (scale-linear (extent scatterData key="x"))
     (scale-linear (extent scatterData key="y"))
     margin="56"
-    padding="0"
-  as |primer rect|}}
+    padding="0" as |primer rect|
+  }}
     {{#primer.transition values=scatterData as |values|}}
       {{primer.scatter values=values}}
     {{/primer.transition}}
-
     {{primer.axis "bottom" primer.xScale offsetY=8 ticks=20}}
     {{primer.axis "left" primer.yScale offsetX=-8}}
-  {{/primer.container}}
-{{/primer-plot}}
+  {{/primer.container}}{{/primer-plot}}

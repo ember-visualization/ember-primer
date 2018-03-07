@@ -1,14 +1,27 @@
 <header>
-  <h2>Area with top line</h2>
-
-  <p class="secondary">In this simple example, we visualize the monthly stock price of $AAPL for May '17.</p>
+  <h2>
+    Area with top line
+  </h2>
+  <p class="secondary">
+    In this simple example, we visualize the monthly stock price of $AAPL for May '17.
+  </p>
 </header>
-
 <div class="TimeSeriesChart Card">
-  {{area-chart-example values=timeSeriesData cursorPosition=cursorPosition global-cursor-change=(action 'updateToolTipPosition')}}
+  {{area-chart-example
+    values=timeSeriesData
+    cursorPosition=cursorPosition
+    global-cursor-change=(action "updateToolTipPosition")
+  }}
 </div>
-
 <div class="TimeSeriesChart Card">
-  <header><h3>Multi-series chart</h3></header>
-  {{multi-line-chart-example stockPrices=stockPrices cursorPosition=cursorPosition global-cursor-change=(action 'updateToolTipPosition')}}
+  <header>
+    <h3>
+      Multi-series chart
+    </h3>
+  </header>
+  {{multi-line-chart-example
+    stockPrices=stockPrices
+    cursorPosition=cursorPosition
+    global-cursor-change=(action "updateToolTipPosition")
+  }}
 </div>

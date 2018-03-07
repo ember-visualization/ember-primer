@@ -137,7 +137,7 @@ export default Component.extend({
 
   _mouseMove(event, trigger = true) {
     if (this.isDestroyed || this.isDestroying) return
-    this.setProperties({ isActive: true, hasMouse: true })
+    // this.setProperties({ isActive: true, hasMouse: true })
 
     let { offsetY: y, offsetX: x } = event
     let { xScale, yScale, values } = this.getProperties('xScale', 'yScale', 'values')
@@ -156,6 +156,7 @@ export default Component.extend({
       if (xLast !== xPointer || yLast !== yPointer) {
         this.setProperties({
           isActive: true,
+          hasMouse: true,
           cursor: {
             x: xPointer,
             y: yPointer,

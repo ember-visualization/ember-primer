@@ -1,11 +1,13 @@
 {{#primer-plot as |primer|}}
-
-  {{#primer.container xScale yScale as |rect|}}
-  {{/primer.container}}
-
-  <g transform="translate(24,24)"><text>{{primer.width}}x{{primer.height}}</text></g>
-
-{{!--   {{#with (hash
+  {{#primer.container xScale yScale as |rect|}}{{/primer.container}}
+  <g transform="translate(24,24)">
+    <text>
+      {{primer.width}}
+      x
+      {{primer.height}}
+    </text>
+  </g>
+  {{!--   {{#with (hash
     xScale=(scale-linear (extent waves key="x") primer.xRange)
     yScale=(scale-linear (extent waves key="y") primer.yRange)
   ) as |scales|}}
@@ -14,5 +16,4 @@
     {{#primer.cursor xScale=scales.xScale yScale=scales.yScale as |x y|}}
       <g transform="translate(24,24)"><text>{{x}},{{y}}</text></g>
     {{/primer.cursor}}
-  {{/with}} --}}
-{{/primer-plot}}
+  {{/with}} --}}{{/primer-plot}}

@@ -1,1 +1,1 @@
-export { default } from 'ember-primer/utils/helpers';
+export { default } from 'ember-primer/utils/helpers'

@@ -1,7 +1,7 @@
 {{#primer-plot
   cursorPosition=cursorPosition
-  cursor-moved=(action "updateCursorPosition")
-as |primer|}}
+  cursor-moved=(action "updateCursorPosition") as |primer|
+}}
   <defs>
     <filter id="drop-shadow-{{elementId}}" height="200%" width="200%">
       <feComponentTransfer in="SourceAlpha" result="mask">
@@ -12,42 +12,68 @@ as |primer|}}
       <feBlend in="SourceGraphic" in2="offset"></feBlend>
     </filter>
   </defs>
-
   {{primer-label text=title fontSize=16 y=2 x=32}}
-
-  {{#primer.container
-    xScale
-    yScale
-    margin="40 32 32"
-  as |primer rect|}}
-
+  {{#primer.container xScale yScale margin="40 32 32" as |primer rect|}}
     {{#if isPercentageMetric}}
-      <rect fill="#FF9800" fill-opacity="0.1" stroke="none" x="0" width={{rect.width}} y={{p/scale-value primer.yScale 100}} height={{p/scale-value primer.yScale 80}}></rect>
+      <rect
+        fill="#FF9800"
+        fill-opacity="0.1"
+        stroke="none"
+        x="0"
+        width={{rect.width}}
+        y={{p/scale-value primer.yScale 100}}
+        height={{p/scale-value primer.yScale 80}}
+      ></rect>
     {{/if}}
-
     {{#each activeFloods as |flood|}}
-      <rect fill="#15CD72" fill-opacity="0.3" stroke="#15CD72" stroke-opacity="0.4" stroke-width="0.5" x={{p/scale-value primer.xScale flood.startedAt}} width={{p/scale-value primer.xScale flood.stoppedAt}} y={{rect.height}} height="8"></rect>
+      <rect
+        fill="#15CD72"
+        fill-opacity="0.3"
+        stroke="#15CD72"
+        stroke-opacity="0.4"
+        stroke-width="0.5"
+        x={{p/scale-value primer.xScale flood.startedAt}}
+        width={{p/scale-value primer.xScale flood.stoppedAt}}
+        y={{rect.height}}
+        height="8"
+      ></rect>
     {{/each}}
-
     {{primer.axis "bottom" primer.xScale offsetY=10 ticks=5}}
-    {{primer.axis "right" primer.yScale offsetX=(div rect.width -1) ticks=4 tickSizeInner=rect.width}}
-
+    {{primer.axis "right" primer.yScale offsetX=(div rect.width -1) ticks=4 tickSizeInner=rect.width
+    }}
     {{primer.area
       fill="#4285f4"
       topLineStroke="#4285f4"
-      values=(scale (p/sample values threshold=rect.width) xScale=primer.xScale yScale=primer.yScale)
+      values=(scale
+        (p/sample values threshold=rect.width) xScale=primer.xScale yScale=primer.yScale
+      )
     }}
-
     {{#primer.cursor values=values as |cursor|}}
       <line x1={{cursor.x}} x2={{cursor.x}} y1="0" y2={{cursor.y}} stroke="#4285f4"></line>
-      <circle cx={{cursor.x}} cy={{cursor.y}} fill='#4285f4' r="4" filter="url(#drop-shadow-{{elementId}})"></circle>
-
+      <circle
+        cx={{cursor.x}}
+        cy={{cursor.y}}
+        fill="#4285f4"
+        r="4"
+        filter="url(#drop-shadow-{{elementId}})"
+      ></circle>
       {{#if isPercentageMetric}}
-        {{primer-label text=(p/format (div (p/scale-invert primer.yScale cursor.y) 100) format=".2%") fontSize=8 y=-16 x=cursor.x textAnchor=(if (gt 100 cursor.x) "start" "end")}}
+        {{primer-label
+          text=(p/format (div (p/scale-invert primer.yScale cursor.y) 100) format=".2%")
+          fontSize=8
+          y=-16
+          x=cursor.x
+          textAnchor=(if (gt 100 cursor.x) "start" "end")
+        }}
       {{else}}
-        {{primer-label text=(p/format cursorValue.y format=",d") fontSize=8 y=-16 x=cursor.x textAnchor="end"}}
+        {{primer-label
+          text=(p/format cursorValue.y format=",d")
+          fontSize=8
+          y=-16
+          x=cursor.x
+          textAnchor="end"
+        }}
       {{/if}}
     {{/primer.cursor}}
-
   {{/primer.container}}
 {{/primer-plot}}

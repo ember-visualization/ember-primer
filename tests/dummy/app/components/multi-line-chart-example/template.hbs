@@ -1,4 +1,7 @@
-{{#primer-plot cursorPosition=cursorPosition cursor-moved=(action "cursorPositionChanged") as |primer|}}
+{{#primer-plot
+  cursorPosition=cursorPosition
+  cursor-moved=(action "cursorPositionChanged") as |primer|
+}}
   {{#primer.defs as |chartId|}}
     <filter id="drop-shadow-{{chartId}}" height="200%" width="200%">
       <feComponentTransfer in="SourceAlpha" result="mask">
@@ -7,28 +10,30 @@
       <feGaussianBlur in="mask" stdDeviation="1" result="blur"></feGaussianBlur>
       <feOffset in="blur" dx="0" dy="2" result="offset"></feOffset>
       <feBlend in="SourceGraphic" in2="offset"></feBlend>
-    </filter>
-  {{/primer.defs}}
-
+    </filter>{{/primer.defs}}
   {{#primer.container
     (scale/time stockPricePeriod)
     (scale-linear stockPriceExtent)
     margin="16 32 56 56"
-    padding="0"
-  as |primer rect|}}
+    padding="0" as |primer rect|
+  }}
     {{#each stocks as |stock|}}
       {{primer.line
         stroke=stock.color
         values=(scale stock.prices xScale=primer.xScale yScale=primer.yScale)
       }}
     {{/each}}
-
     {{#primer.cursor debugKey="single-line-chart" values=stockPriceSeries as |cursor|}}
       <line x1={{cursor.x}} x2={{cursor.x}} y1="0" y2={{cursor.y}} stroke="#66bb6a"></line>
-      <circle cx={{cursor.x}} cy={{cursor.y}} fill='#66bb6a' r="4" filter="url(#drop-shadow-{{primer.chartId}})"></circle>
+      <circle
+        cx={{cursor.x}}
+        cy={{cursor.y}}
+        fill="#66bb6a"
+        r="4"
+        filter="url(#drop-shadow-{{primer.chartId}})"
+      ></circle>
       {{primer-label text=(p/format tooltipValue format="$.2f") title="Stock Price" x=cursor.x}}
     {{/primer.cursor}}
-
     {{primer.axis "bottom" primer.xScale offsetY=4}}
     {{primer.axis "left" primer.yScale offsetX=-4}}
   {{/primer.container}}
