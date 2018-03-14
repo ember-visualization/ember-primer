@@ -11,7 +11,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments)
-    this.values = []
     this.newValues = []
     this.queue = []
   },

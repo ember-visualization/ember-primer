@@ -13,7 +13,7 @@ export default Component.extend(WithContentRect, {
   init() {
     this._super(...arguments)
     this.cursorPosition = [0, 0]
-    this.types = ['client']
+    this.rectTypes = ['client']
   },
 
   // attributeBindings: ['width', 'height', 'viewBox', 'ariaLabelledBy:aria-labelledby', 'role'],
@@ -26,7 +26,7 @@ export default Component.extend(WithContentRect, {
   role: 'img',
 
   // TODO: Rename types to rectTypes
-  types: null,
+  rectTypes: null,
 
   width: computed.reads('contentRect.client.width'),
   height: computed.reads('contentRect.client.height'),
@@ -34,11 +34,7 @@ export default Component.extend(WithContentRect, {
   viewBox: computed('width', 'height', {
     get() {
       let { width, height } = this.getProperties('width', 'height')
-
-      if (!width || !height) {
-        return undefined
-      }
-
+      if (!width || !height) return undefined
       return [0, 0, width, height].join(' ')
     },
   }),

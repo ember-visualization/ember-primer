@@ -12,7 +12,6 @@ export default Component.extend({
   init() {
     this._super(...arguments)
     this.style = {}
-    this.datum = {}
   },
 
   x: 0,

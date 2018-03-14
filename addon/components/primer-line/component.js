@@ -8,11 +8,6 @@ const LineComponent = Component.extend({
   tagName: 'g',
   layout,
 
-  init() {
-    this._super(...arguments)
-    this.values = []
-  },
-
   /**
    * Normalized values to render
    * @public

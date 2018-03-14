@@ -13,8 +13,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments)
-    this.cursorPosition = [0, 0]
-    this.stockPrices = []
   },
 
   /**

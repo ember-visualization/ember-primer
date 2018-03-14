@@ -1,10 +1,10 @@
-import Mixin from '@ember/object/mixin';
-import { run } from '@ember/runloop';
+import Mixin from '@ember/object/mixin'
+import { run } from '@ember/runloop'
+import requestIdleCallback from 'ember-primer/utils/idle-callback'
 
-const MutObserver = self.window.MutationObserver || self.window.WebKitMutationObserver;
+const MutObserver = self.window.MutationObserver || self.window.WebKitMutationObserver
 
 export default Mixin.create({
-
   minHeight: 50,
 
   minWidth: 50,
@@ -14,69 +14,66 @@ export default Mixin.create({
   height: null,
 
   init() {
-    this._super();
-
-    this.runloopAwareResize = () => {
-      run.join(this, this.didResize);
-    };
+    this._super()
+    this.runloopAwareResize = () => run.join(this, this.didResize)
   },
 
   addGlobalEvents() {
-    window.addEventListener('resize', this.runloopAwareResize, { passive: true });
-    window.addEventListener('orientationchange', this.runloopAwareResize, { passive: true });
+    window.addEventListener('resize', this.runloopAwareResize, { passive: true })
+    window.addEventListener('orientationchange', this.runloopAwareResize, { passive: true })
   },
 
   removeGlobalEvents() {
-    window.removeEventListener('resize', this.runloopAwareResize);
-    window.removeEventListener('orientationchange', this.runloopAwareResize);
+    window.removeEventListener('resize', this.runloopAwareResize)
+    window.removeEventListener('orientationchange', this.runloopAwareResize)
   },
 
   startObservingDomMutations() {
     if (MutObserver) {
-      this.mutationObserver = new MutObserver((mutations) => {
+      this.mutationObserver = new MutObserver(mutations => {
         if (mutations[0].addedNodes.length || mutations[0].removedNodes.length) {
-          this.runloopAwareResize();
+          this.runloopAwareResize()
         }
-      });
-      this.mutationObserver.observe(this.element, { childList: true, subtree: true });
+      })
+      this.mutationObserver.observe(this.element, { childList: true, subtree: true })
     } else {
-      this.element.addEventListener('DOMNodeInserted', this.runloopAwareResize, false);
-      this.element.addEventListener('DOMNodeRemoved', this.runloopAwareResize, false);
+      this.element.addEventListener('DOMNodeInserted', this.runloopAwareResize, false)
+      this.element.addEventListener('DOMNodeRemoved', this.runloopAwareResize, false)
     }
   },
 
   stopObservingDomMutations() {
     if (MutObserver) {
       if (this.mutationObserver) {
-        this.mutationObserver.disconnect();
-        this.mutationObserver = null;
+        this.mutationObserver.disconnect()
+        this.mutationObserver = null
       }
     } else {
       if (this.element) {
-        this.element.removeEventListener('DOMNodeInserted', this.runloopAwareReposition);
-        this.element.removeEventListener('DOMNodeRemoved', this.runloopAwareReposition);
+        this.element.removeEventListener('DOMNodeInserted', this.runloopAwareReposition)
+        this.element.removeEventListener('DOMNodeRemoved', this.runloopAwareReposition)
       }
     }
   },
 
   didInsertElement() {
-    this._super(...arguments);
+    this._super(...arguments)
 
     if (this.get('width') === null) {
-      this.addGlobalEvents();
+      this.addGlobalEvents()
       // this.startObservingDomMutations();
 
       // window.addEventListener(`resize.${ this.elementId }`, this.didResize.bind(this));
-      run.scheduleOnce('render', this, this.measureDimensions);
+      run.scheduleOnce('afterRender', this, this.measureDimensions)
     }
   },
 
   willDestroyElement() {
-    this.removeGlobalEvents();
+    this.removeGlobalEvents()
   },
 
   didResize() {
-    run.throttle(this, this.measureDimensions, 16);
+    requestIdleCallback(() => this.measureDimensions(), 48)
   },
 
   /**
@@ -86,17 +83,14 @@ export default Mixin.create({
    * @public
    */
   measureDimensions() {
-    if (!this.element) {
-      return;
-    }
+    if (!this.element) return
+    let { minWidth, minHeight } = this.getProperties('minWidth', 'minHeight')
 
-    let { minWidth, minHeight } = this.getProperties('minWidth', 'minHeight');
+    let rect = this.element.getBoundingClientRect()
 
-    let rect = this.element.getBoundingClientRect();
     this.setProperties({
       width: Math.max(rect.width, minWidth),
-      height: Math.max(rect.height, minHeight)
-    });
-  }
-
-});
+      height: Math.max(rect.height, minHeight),
+    })
+  },
+})

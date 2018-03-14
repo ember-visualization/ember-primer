@@ -19,7 +19,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments)
-    this.values = []
     this.cursor = {
       x: 0,
       y: 0,
@@ -27,7 +26,6 @@ export default Component.extend({
       yValues: [0],
     }
     this._lastPosition = []
-    this.position = []
   },
 
   xScale: null,

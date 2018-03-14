@@ -10,13 +10,6 @@ export default Component.extend({
   layout,
   classNames: ['ResourceUsageChart'],
 
-  init() {
-    this._super(...arguments)
-
-    this.values = []
-    this.cursorPosition = [0, 0]
-  },
-
   metric: null,
 
   startedAt: null,

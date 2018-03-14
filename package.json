@@ -2,7 +2,9 @@
   "name": "ember-primer",
   "version": "0.1.12",
   "description": "Ember Primer is a collection of data visualization primitives.",
-  "keywords": ["ember-addon"],
+  "keywords": [
+    "ember-addon"
+  ],
   "license": "MIT",
   "author": "",
   "directories": {
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^7.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~3.0.0",
@@ -69,7 +72,6 @@
   "engines": {
     "node": ">= 8"
   },
-
   "prettier": {
     "semi": false,
     "singleQuote": true,
@@ -83,6 +85,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "after": ["ember-d3", "d3"]
+    "after": [
+      "ember-d3",
+      "d3"
+    ]
   }
 }

@@ -1,36 +1,34 @@
 /* eslint-env node */
-'use strict';
+'use strict'
 
-const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
-const autoprefixer = require('autoprefixer');
-const systemUIFont = require('postcss-font-family-system-ui');
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon')
+const autoprefixer = require('autoprefixer')
+const systemUIFont = require('postcss-font-family-system-ui')
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     postcssOptions: {
       compile: {
-        enabled: false
+        enabled: false,
       },
-      plugins: [
-        systemUIFont
-      ],
+      plugins: [systemUIFont],
       filter: {
         enabled: true,
         plugins: [
           {
             module: autoprefixer,
             options: {
-              browsers: ['last 5 version', 'ie 9']
-            }
-          }
-        ]
-      }
+              browsers: ['last 5 version', 'ie 9'],
+            },
+          },
+        ],
+      },
     },
 
     vendorFiles: {
-      'jquery.js': null
-    }
-  });
+      'jquery.js': null,
+    },
+  })
 
   /*
     This build file specifies the options for the dummy test app of this
@@ -39,5 +37,5 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
-  return app.toTree();
-};
+  return app.toTree()
+}
