@@ -132,11 +132,12 @@ export default Component.extend({
     this.setProperties({ isActive: true, hasMouse: true })
 
     let { offsetY: y, offsetX: x } = event
+
     let { xScale, yScale, values } = this.getProperties('xScale', 'yScale', 'values')
     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset')
 
     if (xScale) {
-      let [[xPointer, yPointer] = [0, 0], [xValue, ...yValues] = [0, [0]]] = closestPoint(
+      let [[xPointer, yPointer] = [0, 0], [xValue, yValues] = [0, [0]]] = closestPoint(
         [x, y],
         [xOffset, yOffset],
         xScale,
