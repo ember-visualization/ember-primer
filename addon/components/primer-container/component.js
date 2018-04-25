@@ -1,9 +1,9 @@
-import Component from 'ember-component';
-import layout from './template';
-import computed from 'ember-computed';
-import box from 'ember-primer/utils/box-expression';
-const { keys } = Object;
-const Container =  Component.extend({
+import Component from 'ember-component'
+import layout from './template'
+import computed from 'ember-computed'
+import box from 'ember-primer/utils/box-expression'
+const { keys } = Object
+const Container = Component.extend({
   tagName: '',
 
   layout,
@@ -26,23 +26,23 @@ const Container =  Component.extend({
 
   localizedXScale: computed('xScale', 'rect', {
     get() {
-      let { xScale, rect } = this.getProperties('xScale', 'rect');
-      return xScale.copy().range([0, rect.width]);
-    }
+      let { xScale, rect } = this.getProperties('xScale', 'rect')
+      return xScale.copy().range([0, rect.width])
+    },
   }),
 
   localizedYScale: computed('yScale', 'rect', {
     get() {
-      let { yScale, rect } = this.getProperties('yScale', 'rect');
-      return yScale.copy().range([rect.height, 0]);
-    }
+      let { yScale, rect } = this.getProperties('yScale', 'rect')
+      return yScale.copy().range([rect.height, 0])
+    },
   }),
 
   rect: computed('width', 'height', 'margin', {
     get() {
-      let outerHeight = this.get('height') || 10;
-      let outerWidth = this.get('width') || 10;
-      let margin = box(this.get('margin'));
+      let outerHeight = this.get('height') || 10
+      let outerWidth = this.get('width') || 10
+      let margin = box(this.get('margin'))
       // let padding = box(this.get('padding'));
 
       // let innerWidth = outerWidth - margin.left - margin.right;
@@ -66,8 +66,8 @@ const Container =  Component.extend({
       // // let margin = box(this.get('margin'));
       // // let padding = box(this.get('padding'));
 
-      let innerWidth = outerWidth - margin.left - margin.right;
-      let innerHeight = outerHeight - margin.top - margin.bottom;
+      let innerWidth = outerWidth - margin.left - margin.right
+      let innerHeight = outerHeight - margin.top - margin.bottom
 
       let rect = {
         margin,
@@ -82,31 +82,35 @@ const Container =  Component.extend({
 
         // Dupes
         height: innerHeight,
-        width: innerWidth
-      };
+        width: innerWidth,
+      }
 
-      keys(rect).forEach((key) => {
+      keys(rect).forEach(key => {
         if (rect[key] < 0) {
-          rect[key] = 0;
+          rect[key] = 0
         }
-      });
+      })
 
-      return rect;
-    }
+      return rect
+    },
   }),
 
   actions: {
     updateCursorPosition([xValue, yValue], [xCursor, yCursor]) {
-      this.sendAction('update-cursor-position', [xValue, yValue], [xCursor, yCursor]);
+      this.sendAction('update-cursor-position', [xValue, yValue], [xCursor, yCursor])
 
       // this.setProperties({ cursorPosition: [xCursor, yCursor] });
       // this.sendAction('_cursorChangedPosition', [xValue, yValue], [xCursor, yCursor]);
-    }
-  }
-});
+    },
+
+    updateBrush() {
+      debugger
+    },
+  },
+})
 
 Container.reopenClass({
-  positionalParams: ['xScale', 'yScale']
-});
+  positionalParams: ['xScale', 'yScale'],
+})
 
-export default Container;
+export default Container

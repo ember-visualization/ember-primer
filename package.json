@@ -18,7 +18,7 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "d3": "^4.13.0",
+    "d3": "^5.1.0",
     "ember-d3": "^0.4.1",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1",
@@ -37,7 +37,6 @@
     "ember-cli-postcss": "^3.3.0",
     "ember-cli-qunit": "^4.0.0",
     "ember-cli-raw-event-test-helpers": "^0.1.0",
-    "ember-cli-release": "^1.0.0-beta.2",
     "ember-cli-sass": "^7.0.0",
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",

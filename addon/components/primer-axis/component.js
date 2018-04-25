@@ -1,29 +1,24 @@
-import Component from 'ember-component';
-import {
-  axisTop,
-  axisRight,
-  axisBottom,
-  axisLeft
-} from 'd3-axis';
-import { select } from 'd3-selection';
-import run from 'ember-runloop';
+import Component from 'ember-component'
+import { axisTop, axisRight, axisBottom, axisLeft } from 'd3-axis'
+import { select } from 'd3-selection'
+import run from 'ember-runloop'
 
 const AXIS_MAP = {
   top: axisTop,
   right: axisRight,
   bottom: axisBottom,
-  left: axisLeft
-};
+  left: axisLeft,
+}
 
 function translateByOrientation(orientation, rect, offsetX, offsetY) {
   let [x, y] = {
-    'bottom': [0, rect.height],
-    'top': [0, 0],
-    'left': [0, 0],
-    'right': [rect.width, 0]
-  }[orientation];
+    bottom: [0, rect.height],
+    top: [0, 0],
+    left: [0, 0],
+    right: [rect.width, 0],
+  }[orientation]
 
-  return `translate(${x + offsetX},${y + offsetY})`;
+  return `translate(${x + offsetX},${y + offsetY})`
 }
 
 const AxisComponent = Component.extend({
@@ -94,44 +89,58 @@ const AxisComponent = Component.extend({
   offsetY: 0,
 
   didReceiveAttrs() {
-    run.scheduleOnce('render', this, this.drawAxis);
+    run.scheduleOnce('render', this, this.drawAxis)
   },
 
   drawAxis() {
     if (!this.element) {
-      return;
+      return
     }
-    let selection = select(this.element);
+    let selection = select(this.element)
 
-    let rect = this.get('rect');
+    let rect = this.get('rect')
 
-    let { offsetX, offsetY } = this.getProperties('offsetX', 'offsetY');
-    let { scale, orientation, tickFormat, ticks, tickSizeInner, tickSizeOuter, tickValues }
-      = this.getProperties('scale', 'orientation', 'tickFormat', 'ticks', 'tickSizeInner', 'tickSizeOuter', 'tickValues');
+    let { offsetX, offsetY } = this.getProperties('offsetX', 'offsetY')
+    let {
+      scale,
+      orientation,
+      tickFormat,
+      ticks,
+      tickSizeInner,
+      tickSizeOuter,
+      tickValues,
+    } = this.getProperties(
+      'scale',
+      'orientation',
+      'tickFormat',
+      'ticks',
+      'tickSizeInner',
+      'tickSizeOuter',
+      'tickValues',
+    )
 
-    let axis = this.createAxis(orientation, scale);
+    let axis = this.createAxis(orientation, scale)
 
-    axis.tickFormat(tickFormat);
-    axis.tickSize(tickSizeInner, tickSizeOuter);
-    axis.tickValues(tickValues);
-    axis.scale(scale);
+    axis.tickFormat(tickFormat)
+    axis.tickSize(tickSizeInner, tickSizeOuter)
+    axis.tickValues(tickValues)
+    axis.scale(scale)
 
     if (ticks) {
-      axis.ticks(ticks);
+      axis.ticks(ticks)
     }
 
-    selection.call(axis);
-    selection.attr('transform', translateByOrientation(orientation, rect, offsetX, offsetY));
+    selection.call(axis)
+    selection.attr('transform', translateByOrientation(orientation, rect, offsetX, offsetY))
   },
 
   createAxis(orient, scale) {
-    return AXIS_MAP[orient](scale);
-  }
-
-});
+    return AXIS_MAP[orient](scale)
+  },
+})
 
 AxisComponent.reopenClass({
-  positionalParams: ['orientation', 'scale']
-});
+  positionalParams: ['orientation', 'scale'],
+})
 
-export default AxisComponent;
+export default AxisComponent
