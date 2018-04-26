@@ -103,8 +103,8 @@ const Container = Component.extend({
       // this.sendAction('_cursorChangedPosition', [xValue, yValue], [xCursor, yCursor]);
     },
 
-    updateBrush() {
-      debugger
+    updateBrushExtent() {
+      this.sendAction('update-brush-extent', ...arguments)
     },
   },
 })

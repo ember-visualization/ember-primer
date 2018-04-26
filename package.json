@@ -2,7 +2,9 @@
   "name": "ember-primer",
   "version": "0.1.13",
   "description": "Ember Primer is a collection of data visualization primitives.",
-  "keywords": ["ember-addon"],
+  "keywords": [
+    "ember-addon"
+  ],
   "license": "MIT",
   "author": "",
   "directories": {
@@ -63,6 +65,9 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "after": ["ember-d3", "d3"]
+    "after": [
+      "ember-d3",
+      "d3"
+    ]
   }
 }

@@ -1,8 +1,8 @@
-import Component from 'ember-component';
+import Component from 'ember-component'
 // import ResizeableContainer from 'ember-primer/mixins/resizeable-container';
-import WithContentRect from 'ember-measure/with-content-rect';
-import layout from './template';
-import computed from 'ember-computed';
+import WithContentRect from 'ember-measure/with-content-rect'
+import layout from './template'
+import computed from 'ember-computed'
 
 export default Component.extend(WithContentRect, {
   layout,
@@ -29,19 +29,23 @@ export default Component.extend(WithContentRect, {
 
   viewBox: computed('width', 'height', {
     get() {
-      let { width, height } = this.getProperties('width', 'height');
+      let { width, height } = this.getProperties('width', 'height')
 
       if (!width || !height) {
-        return undefined;
+        return undefined
       }
 
-      return [0, 0, width, height].join(' ');
-    }
+      return [0, 0, width, height].join(' ')
+    },
   }),
 
   actions: {
     updateCursorPosition([xValue, yValue], [xCursor, yCursor]) {
-      this.sendAction('cursor-moved', [xValue, yValue], [xCursor, yCursor]);
-    }
-  }
-});
+      this.sendAction('cursor-moved', [xValue, yValue], [xCursor, yCursor])
+    },
+
+    updateBrushExtent(extent, isEmpty) {
+      this.sendAction('update-brush-extent', extent, isEmpty)
+    },
+  },
+})

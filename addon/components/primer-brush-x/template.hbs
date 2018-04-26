@@ -1,6 +1,26 @@
+  {{!-- <defs>
+    <pattern id="handle-pattern-{{elementId}}" class="pattern-handle" width="1" height="1">
+      <rect class="border" width="11" height="22"></rect>
+      <rect class="background" x="1" y="1" width="9" height="20" rx="2" ry="2"></rect>
+      <rect class="line" x="3" y="3" width="1" height="16"></rect>
+      <rect class="line" x="5" y="3" width="1" height="16"></rect>
+      <rect class="line" x="7" y="3" width="1" height="16"></rect>
+    </pattern>
+  </defs>
+
+  <g class="selection" transform="translate({{chartArea.left}},{{chartArea.top}})">
+    <rect class="extent" height="{{chartArea.height}}"></rect>
+  </g>
+ --}}
+
+
+
+
 {{primer-axis 
   scale=xScale
   orientation='bottom'
   rect=(hash height=(or height rect.height) width=(or width rect.width))
   ticks=ticks
 }}
+
+{{!-- <g class="brush" transform="translate({{chartArea.left}},{{chartArea.top}})"></g> --}}
