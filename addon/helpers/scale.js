@@ -9,18 +9,20 @@ import { assert } from '@ember/debug'
  * @return {Array} Scaled pairs
  * @public
  */
+
 export function scale([data], hash = {}) {
   let { xScale, yScale } = hash
 
   assert('You must provide xScale', xScale)
   assert('You must provide yScale', yScale)
 
-  // if (data[0]) {
-  //   assert(
-  //     'You must provide data in the format of [[x,y], [x,y], ...]',
-  //     !parseInt(data[0][0], 10) && !parseInt(data[0][1], 10),
-  //   )
-  // }
+  if (data[0]) {
+    let [sample] = data
+    assert(
+      'You must provide data in the format of [[x,y], [x,y], ...]',
+      (sample[0] || sample[0] === 0) && (sample[1] || sample[1] === 0),
+    )
+  }
 
   return data.map(([x, y]) => [xScale(x), yScale(y)])
 }
