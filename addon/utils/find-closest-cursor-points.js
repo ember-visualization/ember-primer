@@ -22,7 +22,7 @@ export default function findClosestCursorPoints(
 
   // 3. Scale values back to x,y
   let xPointer = xScale(xValue)
-  let yPointer = yValue.length ? valueAtY : yScale(yValue)
+  let yPointer = yValue && yValue.length ? valueAtY : yScale(yValue)
 
   return [[xPointer, yPointer], values[index]]
 }
