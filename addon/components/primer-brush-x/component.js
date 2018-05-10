@@ -25,8 +25,6 @@ export default Component.extend({
   }),
 
   drawBrush() {
-    console.log('drawing')
-
     let { xScale, rect, handleSize, selection } = this.getProperties(
       'xScale',
       'rect',
@@ -40,13 +38,6 @@ export default Component.extend({
     let brush = brushX()
       .extent([[0, 0], [rect.width, handleSize]])
       .handleSize(handleSize)
-    // .on('end', () => {
-
-    // if (selection[0] !== extent[0] || selection[1] !== extent[1]) {
-    // }
-    // console.log(selection, extent)
-    // debugger
-    // })
 
     brushElement
       .call(brush)
@@ -60,12 +51,5 @@ export default Component.extend({
         this.sendAction('_change', extent, !eventSelection)
       })
     })
-
-    // let [rangeStart, rangeEnd] = xScale.range()
-
-    // console.log(mappedSelection)
-
-    // if (mappedSelection[0] !== rangeStart || mappedSelection[1] !== rangeEnd) {
-    // }
   },
 })
