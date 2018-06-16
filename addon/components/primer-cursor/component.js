@@ -91,17 +91,17 @@ export default Component.extend({
     let [xLast, yLast] = this._lastPosition || []
     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset')
 
-    if ((xLast !== xNew || yLast !== yNew) && !hasMouse && values.length > 2) {
+    if ((xLast !== xNew || yLast !== yNew) && values.length > 2) {
       this._mouseMove({ offsetY: yNew + yOffset, offsetX: xNew + xOffset }, false)
     }
   },
 
   _handleMouseMove(event) {
-    if (this.get('hasMouse')) {
-      idleCallback(() => this._mouseMove(event))
-    } else {
-      run(() => this._mouseMove(event))
-    }
+    // if (this.get('hasMouse')) {
+    // idleCallback(() => this._mouseMove(event))
+    // } else {
+    run(() => this._mouseMove(event))
+    // }
   },
 
   _handleMouseLeave() {
@@ -137,7 +137,7 @@ export default Component.extend({
     let { xOffset, yOffset } = this.getProperties('xOffset', 'yOffset')
 
     if (xScale) {
-      let [[xPointer, yPointer] = [0, 0], [xValue, yValues] = [0, [0]]] = closestPoint(
+      let [[xPointer, yPointer], [xValue, yValues], closestYIndex] = closestPoint(
         [x, y],
         [xOffset, yOffset],
         xScale,
@@ -154,6 +154,7 @@ export default Component.extend({
             y: yPointer,
             xValue,
             yValues,
+            closestYIndex,
           },
         })
 

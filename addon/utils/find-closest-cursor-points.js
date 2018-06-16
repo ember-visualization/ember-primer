@@ -15,7 +15,7 @@ export default function findClosestCursorPoints(
   let index = closest(+valueAtX, values.map(([d]) => +d))
 
   // 2 Find the closest series on the Y axis in case we have more than one.
-  let [xValue, ...yValues] = values[index] || [0, 0]
+  let [xValue, yValues] = values[index] || [0, 0]
   let closestYIndex = closest(+valueAtY, yValues.sort(ascending))
   let yIndex = yValues.indexOf(yValues[closestYIndex])
   let yValue = yValues[yIndex]
@@ -24,5 +24,5 @@ export default function findClosestCursorPoints(
   let xPointer = xScale(xValue)
   let yPointer = yValue && yValue.length ? valueAtY : yScale(yValue)
 
-  return [[xPointer, yPointer], values[index]]
+  return [[xPointer, yPointer], values[index], closestYIndex]
 }
