@@ -1,6 +1,6 @@
 {
   "name": "ember-primer",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Ember Primer is a collection of data visualization primitives.",
   "keywords": [
     "ember-addon"
