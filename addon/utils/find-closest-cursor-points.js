@@ -1,5 +1,5 @@
 import closest from 'ember-primer/utils/binary-closest-search'
-import { ascending } from 'd3-array'
+import closestUnsorted from 'ember-primer/utils/unsorted-closest-search'
 
 export default function findClosestCursorPoints(
   [x, y],
@@ -14,15 +14,14 @@ export default function findClosestCursorPoints(
   // 1. Find closest data point to current cursor X
   let index = closest(+valueAtX, values.map(([d]) => +d))
 
+  debugger
   // 2 Find the closest series on the Y axis in case we have more than one.
-  let [xValue, yValues] = values[index] || [0, 0]
-  let closestYIndex = closest(+valueAtY, yValues.sort(ascending))
-  let yIndex = yValues.indexOf(yValues[closestYIndex])
-  let yValue = yValues[yIndex]
+  let [xValue, yValues] = values[index]
+  let [yValue, closestYIndex] = closestUnsorted(+valueAtY, yValues)
 
   // 3. Scale values back to x,y
   let xPointer = xScale(xValue)
-  let yPointer = yValue && yValue.length ? valueAtY : yScale(yValue)
+  let yPointer = yScale(yValue)
 
   return [[xPointer, yPointer], values[index], closestYIndex]
 }

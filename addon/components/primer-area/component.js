@@ -1,8 +1,8 @@
-import Component from 'ember-component';
-import layout from './template';
-import computed from 'ember-computed';
-import { area } from 'd3-shape';
-import curveLookup from 'ember-primer/utils/curve-lookup';
+import Component from 'ember-component'
+import layout from './template'
+import computed from 'ember-computed'
+import { area } from 'd3-shape'
+import curveLookup from 'ember-primer/utils/curve-lookup'
 
 const LineComponent = Component.extend({
   tagName: 'g',
@@ -93,9 +93,9 @@ const LineComponent = Component.extend({
    */
   transform: computed('x', 'y', {
     get() {
-      let { x, y } = this.getProperties('x', 'y');
-      return `translate(${x},${y})`;
-    }
+      let { x, y } = this.getProperties('x', 'y')
+      return `translate(${x},${y})`
+    },
   }),
 
   /**
@@ -118,37 +118,42 @@ const LineComponent = Component.extend({
    */
   areaFn: computed('interpolation', 'yScale', {
     get() {
-      let { interpolation, yScale } = this.getProperties('interpolation', 'yScale');
+      let { interpolation, yScale } = this.getProperties('interpolation', 'yScale')
+      let xAccessor = this.getWithDefault('xAccessor', ([d]) => d)
+      let yAccessor = this.getWithDefault('yAccessor', ([, d]) => d)
 
-      let [zero] = yScale.domain();
+      let [zero] = yScale.domain()
 
       let areaFn = area()
-        .x((d) => d[0])
-        .y0((d) => d[1])
-        .y1(yScale(zero));
+        .x(xAccessor)
+        .y0(([, d]) => {
+          if (d < 0) debugger
+          return d
+        })
+        .y1(yScale(zero))
 
       if (interpolation) {
-        areaFn.curve(curveLookup(interpolation));
+        areaFn.curve(curveLookup(interpolation))
       }
 
-      return areaFn;
-    }
+      return areaFn
+    },
   }),
 
-  pathData: computed('areaFn', 'values.[]',  {
+  pathData: computed('areaFn', 'values.[]', {
     get() {
-      let areaFn = this.get('areaFn');
-      let values = this.get('values');
-      return areaFn(values);
-    }
+      let areaFn = this.get('areaFn')
+      let values = this.get('values')
+      return areaFn(values)
+    },
   }),
 
-  lineXPathData: computed('areaFn', 'values.[]',  {
+  lineXPathData: computed('areaFn', 'values.[]', {
     get() {
-      let areaFn = this.get('areaFn');
-      let values = this.get('values');
-      return areaFn.lineX0()(values);
-    }
+      let areaFn = this.get('areaFn')
+      let values = this.get('values')
+      return areaFn.lineX0()(values)
+    },
   }),
 
   /**
@@ -160,13 +165,13 @@ const LineComponent = Component.extend({
    * @action
    */
   mouseMove(event) {
-    let { offsetX, offsetY } = event;
-    this.sendAction('mouse-move', [offsetX, offsetY]);
-  }
-});
+    let { offsetX, offsetY } = event
+    this.sendAction('mouse-move', [offsetX, offsetY])
+  },
+})
 
 LineComponent.reopenClass({
-  positionalParams: ['values']
-});
+  positionalParams: ['values'],
+})
 
-export default LineComponent;
+export default LineComponent
