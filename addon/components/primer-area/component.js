@@ -119,17 +119,14 @@ const LineComponent = Component.extend({
   areaFn: computed('interpolation', 'yScale', {
     get() {
       let { interpolation, yScale } = this.getProperties('interpolation', 'yScale')
-      let xAccessor = this.getWithDefault('xAccessor', ([d]) => d)
-      let yAccessor = this.getWithDefault('yAccessor', ([, d]) => d)
+      let xAccessor = this.getWithDefault('xAccessor', d => d[0])
+      let yAccessor = this.getWithDefault('yAccessor', d => d[1])
 
       let [zero] = yScale.domain()
 
       let areaFn = area()
         .x(xAccessor)
-        .y0(([, d]) => {
-          if (d < 0) debugger
-          return d
-        })
+        .y0(yAccessor)
         .y1(yScale(zero))
 
       if (interpolation) {
